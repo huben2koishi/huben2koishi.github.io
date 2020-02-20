@@ -1,6 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>中缀表达式转后缀表达式</title>
+    <url>/2020/02/20/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li><strong>中缀表达式</strong>：我们平时写的数学表达式一般为中缀表达式，如 <code>1+2*(3*(4-5*6+7))</code>，中缀表达式的特点是：二元运算符总是在两个运算对象之间。人读起来比较好理解，但是计算机处理起来就很麻烦，运算顺序往往因表达式的内容而定，不具规律性</li>
+<li><strong>后缀表达式</strong>：又称为<strong>逆波兰表达式</strong>。后缀表达式的特点是：每个运算符都置于其运算对象之后。如上面的中缀表达式转化为后缀表达式为 <code>523312*-1+**+</code>。</li>
+</ul>
+<h2 id="转化方法"><a href="#转化方法" class="headerlink" title="转化方法"></a>转化方法</h2><ol>
+<li>初始化一个栈来存放运算符</li>
+<li>从左至右依次读取中缀表达式的字符</li>
+<li>当读取到数字时，立即放到输出中</li>
+<li>当遇到运算符时，比较其与栈顶运算符的优先级<ol>
+<li>如果栈为空或栈顶运算符为 ( ，则直接将此运算符入栈</li>
+<li>比栈顶高，也将运算符入栈</li>
+<li>比栈顶低或相同，将栈顶运算符弹出并输出，再与新的栈顶运算符比较</li>
+</ol>
+</li>
+<li>当遇到括号<ol>
+<li>左括号，运算符入栈</li>
+<li>右括号，依次弹出栈顶运算符并输出，直到遇到左括号为止，此时舍弃这对括号</li>
+</ol>
+</li>
+<li>重复至表达式最右边，然后将栈中运算符输出</li>
+</ol>
+<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>输入 <code>1+2*(3*(4-5*6+7))</code></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+<th>栈</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读取 1</td>
+<td>把操作数直接输出</td>
+<td></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>读取 +</td>
+<td>栈为空，把运算符压入栈</td>
+<td><code>+</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>读取 2</td>
+<td>把操作数直接输出</td>
+<td><code>+</code></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td>读取 *</td>
+<td>栈顶为 +，优先级低于 *，把运算符压入栈</td>
+<td><code>+*</code></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td>读取 (</td>
+<td>把 ( 直接压入栈</td>
+<td><code>+*(</code></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td>读取 3</td>
+<td>把操作数直接输出</td>
+<td><code>+*(</code></td>
+<td><code>123</code></td>
+</tr>
+<tr>
+<td>读取 *</td>
+<td>栈顶为 (，把运算符压入栈</td>
+<td><code>+*(*</code></td>
+<td><code>123</code></td>
+</tr>
+<tr>
+<td>读取 (</td>
+<td>把 ( 直接压入栈</td>
+<td><code>+*(*(</code></td>
+<td><code>123</code></td>
+</tr>
+<tr>
+<td>读取 4</td>
+<td>把操作数直接输出</td>
+<td><code>+*(*(</code></td>
+<td><code>1234</code></td>
+</tr>
+<tr>
+<td>读取 -</td>
+<td>栈顶为 (，把运算符压入栈</td>
+<td><code>+*(*(-</code></td>
+<td><code>1234</code></td>
+</tr>
+<tr>
+<td>读取 5</td>
+<td>把操作数直接输出</td>
+<td><code>+*(*(-</code></td>
+<td><code>12345</code></td>
+</tr>
+<tr>
+<td>读取 *</td>
+<td>栈顶为 -，优先级低于 *，把运算符压入栈</td>
+<td><code>+*(*(-*</code></td>
+<td><code>12345</code></td>
+</tr>
+<tr>
+<td>读取 6</td>
+<td>把操作数直接输出</td>
+<td><code>+*(*(-*</code></td>
+<td><code>123456</code></td>
+</tr>
+<tr>
+<td>读取 +</td>
+<td>栈顶为 *，优先级高于 +，依次弹出栈中运算符 到输出，到 ( 停止，把运算符压入栈中</td>
+<td><code>+*(*(+</code></td>
+<td><code>123456*-</code></td>
+</tr>
+<tr>
+<td>读取 7</td>
+<td>把操作数直接输出</td>
+<td><code>+*(*(+</code></td>
+<td><code>123456*-7</code></td>
+</tr>
+<tr>
+<td>读取 )</td>
+<td>依次弹出栈顶运算符并输出，直到遇到 (，把 ( 弹出</td>
+<td><code>+*(*</code></td>
+<td><code>123456*-7+</code></td>
+</tr>
+<tr>
+<td>读取 )</td>
+<td>依次弹出栈顶运算符并输出，直到遇到 (，把 ( 弹出</td>
+<td><code>+*</code></td>
+<td><code>123456*-7+*</code></td>
+</tr>
+<tr>
+<td>结束读取</td>
+<td>把栈中的元素全部弹出到输出</td>
+<td></td>
+<td><code>123456*-7+**+</code></td>
+</tr>
+</tbody></table>
+<p>输出后缀表达式为：<code>123456*-7+**+</code></p>
+<h2 id="后缀表达式的计算"><a href="#后缀表达式的计算" class="headerlink" title="后缀表达式的计算"></a>后缀表达式的计算</h2><ol>
+<li>按次序读取表达式的每一个字符</li>
+<li>读到操作数时，把操作数压入栈</li>
+<li>读到操作符时，弹出栈顶的两个数做相应运算，把结果压入栈</li>
+<li>读取完所有表达式的字符后，弹出栈，结果即为所求的值</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.huben.stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> koishi</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndixToSuffix</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">"请输入表达式:"</span>);</span><br><span class="line">        String str = in.next();</span><br><span class="line">        System.out.println(<span class="string">"你输入的表达式为: "</span> + str);</span><br><span class="line">        System.out.println(<span class="string">"转化为后缀表达式为："</span> + transfer(str));</span><br><span class="line">        System.out.println(<span class="string">"计算结果为:"</span> + calculate(transfer(str)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 把中缀表达式转换为后缀表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s 中缀表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 后缀表达式</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">transfer</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">char</span>[] arr = s.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : arr) &#123;</span><br><span class="line">            <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'('</span>:</span><br><span class="line">                    stack.push(c);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'+'</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">                    <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() != <span class="string">'('</span>) &#123;</span><br><span class="line">                        sb.append(stack.pop());</span><br><span class="line">                    &#125;</span><br><span class="line">                    stack.push(c);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'*'</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'/'</span>:</span><br><span class="line">                    <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; (stack.peek() == <span class="string">'*'</span> || stack.peek() == <span class="string">'/'</span>)) &#123;</span><br><span class="line">                        sb.append(stack.pop());</span><br><span class="line">                    &#125;</span><br><span class="line">                    stack.push(c);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">')'</span>:</span><br><span class="line">                    <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() != <span class="string">'('</span>) &#123;</span><br><span class="line">                        sb.append(stack.pop());</span><br><span class="line">                    &#125;</span><br><span class="line">                    stack.pop();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    sb.append(c);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            sb.append(stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算后缀表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s 后缀表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 计算结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> <span class="title">calculate</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Float&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">char</span>[] arr = s.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c &gt;= <span class="string">'0'</span> &amp;&amp; c &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">                stack.push((<span class="keyword">float</span>) (c - <span class="string">'0'</span>));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                stack.push(cal(c, stack.pop(), stack.pop()));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Float <span class="title">cal</span><span class="params">(<span class="keyword">char</span> c, <span class="keyword">float</span> a, <span class="keyword">float</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">'+'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> b + a;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'-'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> b - a;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'*'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> b * a;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string">'/'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> b / a;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0F</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果截图</p>
+<img src="/2020/02/20/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/result.png" class="">
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java基础知识(一)</title>
     <url>/2020/02/19/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-%E4%B8%80/</url>
     <content><![CDATA[<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>HashMap</p>
@@ -9,7 +173,7 @@
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>
