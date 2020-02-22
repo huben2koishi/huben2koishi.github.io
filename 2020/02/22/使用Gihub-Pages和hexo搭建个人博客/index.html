@@ -46,15 +46,19 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="『Subterranean Rose』">
-<meta property="og:url" content="https://kaguya.top/archives/index.html">
+  <meta name="description" content="手把手教学，从零开始搭建自己的博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Gihub Pages和hexo搭建个人博客">
+<meta property="og:url" content="https://kaguya.top/2020/02/22/%E4%BD%BF%E7%94%A8Gihub-Pages%E5%92%8Chexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="『Subterranean Rose』">
+<meta property="og:description" content="手把手教学，从零开始搭建自己的博客">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-22T03:42:49.000Z">
+<meta property="article:modified_time" content="2020-02-22T04:40:07.890Z">
 <meta property="article:author" content="Koishi">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://kaguya.top/archives/">
+<link rel="canonical" href="https://kaguya.top/2020/02/22/%E4%BD%BF%E7%94%A8Gihub-Pages%E5%92%8Chexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
 
 
 <script id="page-configurations">
@@ -62,11 +66,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>归档 | 『Subterranean Rose』</title>
+  <title>使用Gihub Pages和hexo搭建个人博客 | 『Subterranean Rose』</title>
   
 
 
@@ -201,129 +205,184 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+     
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 5 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kaguya.top/2020/02/22/%E4%BD%BF%E7%94%A8Gihub-Pages%E5%92%8Chexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Koishi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="『Subterranean Rose』">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Gihub Pages和hexo搭建个人博客
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-22 11:42:49 / 修改时间：12:40:07" itemprop="dateCreated datePublished" datetime="2020-02-22T11:42:49+08:00">2020-02-22</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+          <!--
+            <div class="post-description">手把手教学，从零开始搭建自己的博客</div> -->
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
+        <h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p><strong>Github Pages</strong> 可以被认为是用户编写的、托管在github上的静态网页。使用Github Pages可以为你提供一个免费的服务器，免去了自己搭建服务器和写数据库的麻烦。此外还可以绑定自己的域名。</p>
+<p><strong>Hexo</strong> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="一、Github创建个人仓库"><a href="#一、Github创建个人仓库" class="headerlink" title="一、Github创建个人仓库"></a>一、Github创建个人仓库</h2><p>登录到 <a href="httpw://www.github.com">Github</a> ，如果没有账号先去注册一个。点击个人页面中的 New repository 创建新仓库</p>
+<p>仓库的名字必须为：自己注册的用户名 + .github.io</p>
+<p>例如</p>
+<blockquote>
+<p>我的用户名为：huben2koishi</p>
+<p>那么仓库名字就是：huben2koishi.github.io</p>
+</blockquote>
+<p>至此，你就已经相当于给自己的博客利用 github 的服务器搭了一个后台。很简单对不对~~</p>
+<p>注意几点：</p>
+<ol>
+<li>注册的邮箱一定要验证，否则不会成功</li>
+<li>仓库名字必须是：username.github.io，其中username是你的用户名</li>
+<li>仓库创建成功不一定会立即生效，可能需要过一段时间</li>
+</ol>
+<h2 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h2><p>提交代码到Github上必须用到Git。前往 <a href="https://git-scm.com/download" target="_blank" rel="noopener">官网</a> 下载，默认安装就行</p>
+<p>安装完成后，在cmd命令行输入 <code>git -v</code> 看看版本测试安装是否成功</p>
+<h2 id="三、绑定本地-Git-和-Github-账号"><a href="#三、绑定本地-Git-和-Github-账号" class="headerlink" title="三、绑定本地 Git 和 Github 账号"></a>三、绑定本地 Git 和 Github 账号</h2><ol>
+<li><p>配置 Git 信息：</p>
+<p>打开cmd窗口</p>
+<blockquote>
+<p>git config –global user.name “你的github用户名”</p>
+<p>git config –global user.email “你的github注册邮箱”</p>
+</blockquote>
+</li>
+<li><p>生成 ssh 密钥文件</p>
+<p>为什么要配置这个呢？因为你提交代码肯定要拥有你的github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题</p>
+<blockquote>
+<p>cd .ssh </p>
+</blockquote>
+<p>如果提示：The system cannot find the path specified. 说明你是第一次使用</p>
+<p>生成密钥</p>
+<blockquote>
+<p>ssh-keygen -t rsa</p>
+</blockquote>
+<p>然后连续3次回车，最终会生成一个文件夹 .ssh 在用户目录下，打开 .ssh 文件夹，复制 id_rsa.pub 文件的内容</p>
+<p>打开 Github 主页，进入个人设置 &gt;&gt; SSH and GPG keys &gt;&gt; New SSH key，title为标题，任填即可，将复制的内容粘贴进 key，最后点击 Add SSH key</p>
+</li>
+<li><p>测试是否成功添加公钥</p>
+<p>在 Git Bash 中检测 GitHub 公钥设置是否成功，输入 <code>ssh git@github.com</code></p>
+<p>如果提示<code>Are you sure you want to continue connecting (yes/no)?</code>，输入yes，然后会看到：</p>
+<blockquote>
+<p>Hi xxxxxx! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+</blockquote>
+</li>
+</ol>
+<p>如上则说明成功。这里之所以设置GitHub密钥原因是，通过非对称加密的公钥与私钥来完成加密，公钥放置在GitHub上，私钥放置在自己的电脑里。GitHub要求每次推送代码都是合法用户，所以每次推送都需要输入账号密码验证推送用户是否是合法用户，为了省去每次输入密码的步骤，采用了ssh，当你推送的时候，git就会匹配你的私钥跟GitHub上面的公钥是否是配对的，若是匹配就认为你是合法用户，则允许推送。这样可以保证每次的推送都是正确合法的。</p>
+<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>由于 Hexo 基于 Node.js 因此我们到 <a href="https://nodejs.org/zh-cn/download" target="_blank" rel="noopener">官网</a> 上下载一下 Node.js。</p>
+<p>下载安装包，默认安装后，在命令行中输入 <code>node -v</code> 检测是否安装成功。</p>
+<p>Node.js 会默认帮我们安装npm，这是个包管理工具，下面的Hexo安装就要用到npm。由于npm使用的包源是国外的，所以国内访问可能非常慢，这里我们把npm的源替换为国内的</p>
+<blockquote>
+<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>Hexo 是我们的博客框架，这里需要在电脑内创建一个文件夹，可以随意命名</p>
+<p>进入文件夹，打开cmd 窗口，安装 Hexo</p>
+<blockquote>
+<p>npm i -g hexo-cli</p>
+</blockquote>
+<p>安装完成后，初始化博客</p>
+<blockquote>
+<p>hexo init</p>
+</blockquote>
+<h2 id="把博客部署到-Github"><a href="#把博客部署到-Github" class="headerlink" title="把博客部署到 Github"></a>把博客部署到 Github</h2><p>打开博客的配置文件 _config.yml，翻到最后修改为</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">这里填你之前Github上创建的仓库的路径</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-22T11:42:49+08:00"
-              content="2020-02-22">
-          02-22
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/22/%E4%BD%BF%E7%94%A8Gihub-Pages%E5%92%8Chexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url">
-            <span itemprop="name">使用Gihub Pages和hexo搭建个人博客</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-21T20:21:00+08:00"
-              content="2020-02-21">
-          02-21
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/21/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-3-%EF%BC%9A%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" itemprop="url">
-            <span itemprop="name">八大基本排序(3)：插入排序</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-21T19:02:20+08:00"
-              content="2020-02-21">
-          02-21
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/21/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-2-%EF%BC%9A%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" itemprop="url">
-            <span itemprop="name">八大基本排序(2)：选择排序</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-21T16:36:24+08:00"
-              content="2020-02-21">
-          02-21
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/21/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-1-%EF%BC%9A%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" itemprop="url">
-            <span itemprop="name">八大基本排序(1)：冒泡排序</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-20T18:35:35+08:00"
-              content="2020-02-20">
-          02-20
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/20/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">中缀表达式转后缀表达式</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+<p>然后安装Git部署插件</p>
+<blockquote>
+<p>npm i hexo-deployer-git</p>
+</blockquote>
+<p>最后，分别输入</p>
+<blockquote>
+<p>hexo g</p>
+<p>hexo d</p>
+</blockquote>
+<p>你就会发现你的博客已经上线了，在浏览器输入 <code>你的用户名.github.io</code> 就可以访问了。</p>
 
     </div>
+
+    
+    
+    
+
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束, 感谢您的阅读-------------</div>
+    
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/21/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-3-%EF%BC%9A%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" rel="prev" title="八大基本排序(3)：插入排序">
+      <i class="fa fa-chevron-left"></i> 八大基本排序(3)：插入排序
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -374,6 +433,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Github创建个人仓库"><span class="nav-number">2.</span> <span class="nav-text">一、Github创建个人仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装Git"><span class="nav-number">3.</span> <span class="nav-text">二、安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、绑定本地-Git-和-Github-账号"><span class="nav-number">4.</span> <span class="nav-text">三、绑定本地 Git 和 Github 账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Node-js"><span class="nav-number">5.</span> <span class="nav-text">安装 Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Hexo"><span class="nav-number">6.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把博客部署到-Github"><span class="nav-number">7.</span> <span class="nav-text">把博客部署到 Github</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
