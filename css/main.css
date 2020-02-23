@@ -1256,7 +1256,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #aa0d71;
+  background: #eb592d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1499,6 +1499,7 @@ pre .javascript .function {
   color: #808080;
   display: inline-block;
   margin: 0 5px;
+  animation: iconAnimate 1.33s ease-in-out infinite;
 }
 .powered-by,
 .theme-info {
@@ -2336,6 +2337,10 @@ ul.breadcrumb li + li:last-child {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.has-jax {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .header {
   margin: 0 auto;
