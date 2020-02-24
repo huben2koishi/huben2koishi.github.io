@@ -48,21 +48,21 @@
 
   <meta name="description" content="本文主要讲述了快速排序的概念、代码实现以及优化方案。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="八大基本排序(5)：快速排序">
-<meta property="og:url" content="https://kaguya.top/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="十大经典排序算法(5)：快速排序">
+<meta property="og:url" content="https://kaguya.top/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="『Subterranean Rose』">
 <meta property="og:description" content="本文主要讲述了快速排序的概念、代码实现以及优化方案。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://kaguya.top/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quick.gif">
+<meta property="og:image" content="https://kaguya.top/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quick.gif">
 <meta property="article:published_time" content="2020-02-22T10:58:02.000Z">
-<meta property="article:modified_time" content="2020-02-23T14:16:20.880Z">
+<meta property="article:modified_time" content="2020-02-24T13:16:25.478Z">
 <meta property="article:author" content="Koishi">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://kaguya.top/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quick.gif">
+<meta name="twitter:image" content="https://kaguya.top/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quick.gif">
 
-<link rel="canonical" href="https://kaguya.top/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+<link rel="canonical" href="https://kaguya.top/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
 
 
 <script id="page-configurations">
@@ -74,7 +74,7 @@
   };
 </script>
 
-  <title>八大基本排序(5)：快速排序 | 『Subterranean Rose』</title>
+  <title>十大经典排序算法(5)：快速排序 | 『Subterranean Rose』</title>
   
 
 
@@ -214,7 +214,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kaguya.top/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://kaguya.top/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -227,7 +227,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          八大基本排序(5)：快速排序
+          十大经典排序算法(5)：快速排序
         </h1>
 
         <div class="post-meta">
@@ -244,7 +244,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-23 22:16:20" itemprop="dateModified" datetime="2020-02-23T22:16:20+08:00">2020-02-23</time>
+                <time title="修改时间：2020-02-24 21:16:25" itemprop="dateModified" datetime="2020-02-24T21:16:25+08:00">2020-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -299,14 +299,14 @@
 <li>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区操作；</li>
 <li>递归地把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
 </ol>
-<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><img src="/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quick.gif" class="">
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><img src="/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-5-%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quick.gif" class="">
 
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 当数组元素等于1 返回</span></span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="comment">// 选择左端点为基准</span></span><br><span class="line">        <span class="keyword">int</span> pivot = arr[left];</span><br><span class="line">        <span class="keyword">int</span> pos = left;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = left + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">            <span class="comment">// 小于基准的数移到左边</span></span><br><span class="line">            <span class="keyword">if</span> (pivot &gt; arr[i]) &#123;</span><br><span class="line">                pos++;</span><br><span class="line">                swap(arr, pos, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 交换左端点和基准值的位置</span></span><br><span class="line">        swap(arr, left, pos);</span><br><span class="line">        <span class="comment">// 递归左右两个子序列</span></span><br><span class="line">        quickSort(arr, left, pos - <span class="number">1</span>);</span><br><span class="line">        quickSort(arr, pos + <span class="number">1</span>, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a != b) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[a];</span><br><span class="line">    	arr[a] = arr[b];</span><br><span class="line">    	arr[b] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>快速排序最佳情况下时间复杂度为 $O(n\log_2n)$，最坏情况下为 $O(n^2)$，平均复杂度接近最佳情况 $O(n\log_2n)$</p>
 <h2 id="优化-1"><a href="#优化-1" class="headerlink" title="优化 1"></a>优化 1</h2><p>快排是不断减小问题规模来解决子问题的，需要不断递归。但是递归到规模足够小时，如果继续采用这种 不稳定+递归 的方式执行下去，效率不见得会很好</p>
-<p>插入排序的时间复杂度是 $O(n^2)$，但是在已经排序好的数组上面，插入排序的最佳情况是 $O(n)$，插入排序在小数组的排序上是非常高效的，所以在快速排序递归的子序列，如果序列规模足够小，可以使用插入排序替代快速排序，因此可以在快排之前判断数组大小，如果小于一个阀值就使用插入排序</p>
-<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 当数组长度小于7时使用插入排序</span></span><br><span class="line">    <span class="keyword">if</span> (right - left + <span class="number">1</span> &lt; <span class="number">7</span>) &#123;</span><br><span class="line">        insertionSort(arr, left, right);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 选择左端点为基准</span></span><br><span class="line">    <span class="keyword">int</span> pivot = arr[left];</span><br><span class="line">    <span class="keyword">int</span> pos = left;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">        <span class="comment">// 小于基准的数移到左边</span></span><br><span class="line">        <span class="keyword">if</span> (pivot &gt; arr[i]) &#123;</span><br><span class="line">            pos++;</span><br><span class="line">            swap(arr, pos, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 交换左端点和基准值的位置</span></span><br><span class="line">    swap(arr, left, pos);</span><br><span class="line">    <span class="comment">// 递归左右两个子序列</span></span><br><span class="line">    quickSort1(arr, left, pos - <span class="number">1</span>);</span><br><span class="line">    quickSort1(arr, pos + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left + <span class="number">1</span>; i &lt; right; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> preIndex = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> current = arr[i];</span><br><span class="line">        <span class="keyword">while</span> (preIndex &gt;= <span class="number">0</span> &amp;&amp; arr[preIndex] &gt; current) &#123;</span><br><span class="line">            arr[preIndex + <span class="number">1</span>] = arr[preIndex];</span><br><span class="line">            preIndex--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[preIndex + <span class="number">1</span>] = current;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入排序的时间复杂度是 $O(n^2)$，但是在已经排序好的数组上面，插入排序的最佳情况是 $O(n)$，插入排序在小数组的排序上是非常高效的，所以在快速排序递归的子序列，如果序列规模足够小，可以使用插入排序替代快速排序，因此可以在快排之前判断数组大小，如果小于一个阈值就使用插入排序</p>
+<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 当数组长度小于7时使用插入排序</span></span><br><span class="line">    <span class="keyword">if</span> (right - left + <span class="number">1</span> &lt; <span class="number">7</span>) &#123;</span><br><span class="line">        insertionSort(arr, left, right);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 选择左端点为基准</span></span><br><span class="line">    <span class="keyword">int</span> pivot = arr[left];</span><br><span class="line">    <span class="keyword">int</span> pos = left;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">        <span class="comment">// 小于基准的数移到左边</span></span><br><span class="line">        <span class="keyword">if</span> (pivot &gt; arr[i]) &#123;</span><br><span class="line">            pos++;</span><br><span class="line">            swap(arr, pos, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 交换左端点和基准值的位置</span></span><br><span class="line">    swap(arr, left, pos);</span><br><span class="line">    <span class="comment">// 递归左右两个子序列</span></span><br><span class="line">    quickSort1(arr, left, pos - <span class="number">1</span>);</span><br><span class="line">    quickSort1(arr, pos + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = left + <span class="number">1</span>; i &lt; right; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> preIndex = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> current = arr[i];</span><br><span class="line">        <span class="keyword">while</span> (preIndex &gt;= left &amp;&amp; arr[preIndex] &gt; current) &#123;</span><br><span class="line">            arr[preIndex + <span class="number">1</span>] = arr[preIndex--];</span><br><span class="line">        &#125;</span><br><span class="line">        arr[preIndex + <span class="number">1</span>] = current;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="优化-2"><a href="#优化-2" class="headerlink" title="优化 2"></a>优化 2</h2><p>在数组几乎有序时，快排性能不好，因为每趟排序后，左右两个子递归规模相差悬殊，大的那部分时间复杂度最后很可能会达到 $O(n^2)$</p>
 <p>解决方法：<strong>三数取中（median-of-three）法</strong>。即取三个关键字先进行排序，将中间数作为枢轴，一般是取左端、右端和中间三个数，也可以随机选取。这样至少这个中间数一定不会是最小或者最大的数，从概率来说，取三个数均为最小或最大数的可能性是微乎其微的，因此中间数位于较为中间的值的可能性就大大提高了。由于整个序列是无序状态，随机选取三个数和从左中右端取三个数其实是一回事，而且随机数生成器本身还会带来时间上的开销，因此随机生成不予考虑。</p>
@@ -357,10 +357,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/22/%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%8E%92%E5%BA%8F-4-%EF%BC%9A%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/" rel="prev" title="八大基本排序(4)：希尔排序">
-      <i class="fa fa-chevron-left"></i> 八大基本排序(4)：希尔排序
+    <a href="/2020/02/22/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-4-%EF%BC%9A%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/" rel="prev" title="十大经典排序算法(4)：希尔排序">
+      <i class="fa fa-chevron-left"></i> 十大经典排序算法(4)：希尔排序
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/24/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-6-%EF%BC%9A%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="next" title="十大经典排序算法(6)：归并排序">
+      十大经典排序算法(6)：归并排序 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -436,7 +439,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -460,9 +463,6 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:1274641305@qq.com" title="E-Mail → mailto:1274641305@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/5252847336" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5252847336" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
       </span>
       <span class="links-of-author-item">
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
