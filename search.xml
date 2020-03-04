@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>算法：斐波那契数列</title>
+    <url>/2020/03/04/25921/</url>
+    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>斐波那契数列是这样一个数列，它满足：$f(n)=\begin{cases}0&amp;\text{n=0}\\1&amp;\text{n=1}\\f(n-1)+f(n-2)&amp;\text{n&gt;=2}\end{cases}$</p>
+<h2 id="实现1"><a href="#实现1" class="headerlink" title="实现1"></a>实现1</h2><p>实现很简单，当n=0返回0，n=1返回1，当n&gt;=2时使用递归返回前两项之和</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> n &lt; <span class="number">2</span> ? n : fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码很简单，只用1行就实现了斐波那契的算法，但这种单纯的递归实现会有很严重的性能问题。我用自己电脑计算 fib(50) 时就花了大概45秒，fib(60) 就算不出来了，一直卡着</p>
+<p>之所以出现这种情况，是因为在递归的过程中存在大量重复的计算，如下图所示：</p>
+<img src="/2020/03/04/25921/fibonacci1.jpg" class="">
+
+<p>可见，仅仅是对 fib(10) 的计算，而且仅画出了4层，就出现了大量的重复。随着 n 的递增，为求出结果，重复的计算会急剧增加，这种方法的时间复杂度是 $O(n^2)​$</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>使用尾递归，把每次计算的结果保持下来，计算结果参与下一次的计算，从而减少计算量。原本递归产生的栈的层次下网二叉树一样以指数级增长，现在栈的层次像数组，变成线性增长了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">long</span> first, <span class="keyword">long</span> second, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> first + second;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fib(second, first + second, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现2"><a href="#实现2" class="headerlink" title="实现2"></a>实现2</h2><p>不使用递归，而是使用迭代的方式实现</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> n1 = <span class="number">0</span>, n2 = <span class="number">1</span>, n3 = n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        n3 = n1 + n2;</span><br><span class="line">        n1 = n2;</span><br><span class="line">        n2 = n3;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现3"><a href="#实现3" class="headerlink" title="实现3"></a>实现3</h2><p>实际上斐波那契数列数列是有非递推式的通项公式的: $f(n)=\frac{1}{\sqrt5}(\frac{1+\sqrt5}{2})^n-\frac{1}{\sqrt5}(\frac{1-\sqrt5}{2})^n$</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">long</span>) (Math.pow((<span class="number">1</span> + Math.sqrt(<span class="number">5</span>)) / <span class="number">2</span>, n) / Math.sqrt(<span class="number">5</span>) </span><br><span class="line">                   - Math.pow((<span class="number">1</span> - Math.sqrt(<span class="number">5</span>)) / <span class="number">2</span>, n) / Math.sqrt(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通项公式中要求某个数的 n 次幂，所以空间复杂度为 $O(\log_2n)$</p>
+<h2 id="实现4"><a href="#实现4" class="headerlink" title="实现4"></a>实现4</h2><p>使用矩阵快速幂方式实现</p>
+<p>斐波那契数列的通项公式为 $f(n)=\begin{cases}0&amp;\text{n=0}\\1&amp;\text{n=1}\\f(n-1)+f(n-2)&amp;\text{n&gt;=2}\end{cases}$</p>
+<p>根据通项公式可写成以下形式：</p>
+<p>$f(n+1)=1*f(n)+1*f(n-1)$</p>
+<p>$f(n)=1*f(n-1)+1*f(n-2)$</p>
+<p>$f(n)=1*f(n)+0*f(n-1)$</p>
+<p>$f(n-1)=1*f(n-1)+0*f(n-2)​$</p>
+<p>用矩阵表示为：</p>
+<p>$$\begin{bmatrix}f(n+1)&amp;f(n)\\f(n)&amp;f(n-1)\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}*\begin{bmatrix}f(n)&amp;f(n-1)\\f(n-1)&amp;f(n-2)\end{bmatrix}$$</p>
+<p>进一步，可得：</p>
+<p>$$\begin{bmatrix}f(n+1)&amp;f(n)\\f(n)&amp;f(n-1)\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}^2*\begin{bmatrix}f(n-1)&amp;f(n-2)\\f(n-2)&amp;f(n-3)\end{bmatrix}$$</p>
+<p>$$=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}^{n-1}*\begin{bmatrix}f(2)&amp;f(1)\\f(1)&amp;f(0)\end{bmatrix}=\begin{bmatrix}1&amp;1\\1&amp;0\end{bmatrix}^n$$</p>
+<p>所以通过求矩阵 $\begin{bmatrix}1&amp;1\\ 1&amp;0\end{bmatrix}​$ 的n次方就可以得到 $f(n)​$ 了</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span>[][] UNIT = &#123;&#123;<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span>[][] fib(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> UNIT;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ((n &amp; <span class="number">1</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// n 为偶数</span></span><br><span class="line">        <span class="keyword">long</span>[][] matrix = fib(n &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> matrixMultiply(matrix, matrix);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// n 为奇数</span></span><br><span class="line">        <span class="keyword">long</span>[][] matrix = fib((n - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> matrixMultiply(UNIT, matrixMultiply(matrix, matrix));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 矩阵乘法</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span>[][] matrixMultiply(<span class="keyword">long</span>[][] a, <span class="keyword">long</span>[][] b) &#123;</span><br><span class="line">    <span class="keyword">int</span> row = a.length, col = b[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">long</span>[][] result = <span class="keyword">new</span> <span class="keyword">long</span>[row][col];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; a[i].length; k++) &#123;</span><br><span class="line">                result[i][j] += a[i][k] * b[k][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现5"><a href="#实现5" class="headerlink" title="实现5"></a>实现5</h2><p>在GMP(GNU多重精度算术库)中，它并没有使用矩阵快速幂的方法，而是使用递推式，不过它使用的递推式更加复杂：</p>
+<p>$$f(2k+1)=4*f(k)^2-f(k-1)^2+2*(-1)^k$$</p>
+<p>$$f(2k-1)=f(k)^2+f(k-1)^2$$</p>
+<p>$$f(2k)=f(2k+1)-f(2k-1)$$</p>
+<p>这个算法首先把n转化成二进制形式，然后从最高位开始向低位遍历，设m的二进制前i位(0到i-1位)表示的值为 $k_i​$，那么 $f(k_i)​$ 和 $f(k_i-1)​$ 都是已知的</p>
+<ul>
+<li>如果第i位为1，那么就用已知的 $f(k_i)$ 和 $f(k_i-1)$ 计算 $f(2k_i+1)$ 和 $f(2k_i)$，得到 $f(k_{i+1})$ 和 $f(k_{i+1}-1)​$</li>
+<li>如果第i位为0，那么就用已知的 $f(k_i)​$ 和 $f(k_i-1)​$ 计算 $f(2k_i)​$ 和 $f(2k_i-1)​$，得到 $f(k_{i+1})​$ 和 $f(k_{i+1}-1)​$</li>
+</ul>
+<p>可以看到迭代的次数跟n的二进制长度一致，所以其时间复杂度也是 $O(\log_2n)$</p>
+<p>需要注意的是，上述递推式中的 $f(k)^2$ 和 $f(k-1)^2$ 是可以复用的，实际上每一次迭代只需要进行两次大整数乘法运算</p>
+<p>举个栗子：求 $f(25)$，已知 $f(-1)=1$，$f(0)=0$</p>
+<p>首先把25转化为二进制形式11001，从最高位开始，它是1，那么此时 k=0</p>
+<p>$$f(1)=4*f(0)^2=f(-1)^2+2=1$$</p>
+<p>$$f(-1)=1$$</p>
+<p>$$f(0)=0$$</p>
+<p>然后第2位，同样为1，此时 k=1</p>
+<p>$$f(3)=4*f(1)^2-f(0)^2-2=2$$</p>
+<p>$$f(1)=1$$</p>
+<p>$$f(2)=f(3)-f(1)=1$$</p>
+<p>第3位为0，此时 k=3</p>
+<p>$$f(7)=4*f(3)^2-f(2)^2-2=13$$</p>
+<p>$$f(5)=f(3)^2+f(2)^2=5$$</p>
+<p>$$f(6)=f(7)-f(5)=8$$</p>
+<p>第4位为0，此时 k=6</p>
+<p>$$f(13)=4*f(6)^2-f(5)^2+2=13$$</p>
+<p>$$f(11)=f(6)^2+f(5)^2=98$$</p>
+<p>$$f(12)=f(13)-f(11)=144$$</p>
+<p>第5位为1，此时 k=12，得到最终结果</p>
+<p>$$f(25)=4*f(12)^2-f(11)^2+2=75025$$</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>十大经典排序算法总结</title>
     <url>/2020/03/04/45778/</url>
     <content><![CDATA[<h2 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h2><table>
