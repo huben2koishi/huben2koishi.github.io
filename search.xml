@@ -1,6 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>十大经典排序算法总结</title>
+    <url>/2020/03/04/45778/</url>
+    <content><![CDATA[<h2 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h2><table>
+<thead>
+<tr>
+<th align="center">排序方法</th>
+<th align="center">时间复杂度(平均)</th>
+<th align="center">时间复杂度(最坏)</th>
+<th align="center">时间复杂度(最好)</th>
+<th align="center">空间复杂度</th>
+<th align="center">稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">冒泡排序</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n)$</td>
+<td align="center">$O(1)$</td>
+<td align="center">稳定</td>
+</tr>
+<tr>
+<td align="center">选择排序</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(1)$</td>
+<td align="center">不稳定</td>
+</tr>
+<tr>
+<td align="center">插入排序</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n)$</td>
+<td align="center">$O(1)$</td>
+<td align="center">稳定</td>
+</tr>
+<tr>
+<td align="center">希尔排序</td>
+<td align="center">$O(n^{1.3})$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n)$</td>
+<td align="center">$O(1)$</td>
+<td align="center">不稳定</td>
+</tr>
+<tr>
+<td align="center">快速排序</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">不稳定</td>
+</tr>
+<tr>
+<td align="center">归并排序</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n)$</td>
+<td align="center">稳定</td>
+</tr>
+<tr>
+<td align="center">堆排序</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(n\log_2n)$</td>
+<td align="center">$O(1)$</td>
+<td align="center">不稳定</td>
+</tr>
+<tr>
+<td align="center">计数排序</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">稳定</td>
+</tr>
+<tr>
+<td align="center">桶排序</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">$O(n^2)$</td>
+<td align="center">$O(n)$</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">稳定</td>
+</tr>
+<tr>
+<td align="center">基数排序</td>
+<td align="center">$O(n*k)$</td>
+<td align="center">$O(n*k)$</td>
+<td align="center">$O(n*k)$</td>
+<td align="center">$O(n+k)$</td>
+<td align="center">稳定</td>
+</tr>
+</tbody></table>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li><p><a href="https://kaguya.top/2020/02/21/61456/">冒泡排序</a></p>
+<p>（无序区，有序区）从无序区通过交换找出最大元素放到有序区前端</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/02/21/39445/">选择排序</a></p>
+<p>（有序区，无序区）在无序区中找出一个最小的元素跟在有序区后面</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/02/21/1609/">插入排序</a></p>
+<p>（有序区，无序区）把无序区的第一个元素插入到有序区的合适位置</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/02/22/53145/">希尔排序</a></p>
+<p>每一轮按照事先决定的间隔进行插入排序，间隔会逐渐缩小至1</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/02/22/20366/">快速排序</a></p>
+<p>（小数，基准值，大数）在区间中选择一个元素作为基准，把小于基准的元素放在基准之前，大于基准的元素放在基准之后，在分别对小数区和大数区进行排序</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/02/24/27532/">归并排序</a></p>
+<p>把数据分为两段，从两段中组个选最小的元素移入新数据段的末尾</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/03/03/14948/">堆排序</a></p>
+<p>（最大堆，有序区）从堆顶把根节点取出来放在有序区之前，再恢复堆</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/03/03/4826/">计数排序</a></p>
+<p>统计小于等于该元素值的个数 i，该元素就放在目标数组的索引 i 位</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/03/03/52110/">桶排序</a></p>
+<p>遍历数组把各元素放入对于的桶中，再对桶中个元素进行排序</p>
+</li>
+<li><p><a href="https://kaguya.top/2020/03/04/53833/">基数排序</a></p>
+<p>低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>十大经典排序算法(10)：基数排序</title>
+    <url>/2020/03/04/53833/</url>
+    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ol>
+<li>取得数组中的最大数，并取得位数</li>
+<li>arr为原始数组，从最低位开始取每个位组成radix数组</li>
+<li>对radix进行计数排序（利用计数排序适用于小范围数的特点）</li>
+</ol>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><img src="/2020/03/04/53833/radix.gif" class="">
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">radixSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 找出数组最大值</span></span><br><span class="line">    <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">            max = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初始化10个桶</span></span><br><span class="line">    <span class="keyword">int</span>[][] buckets = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>][arr.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 每次循环 n*10，当 max/n小于0 时说明已经遍历到了最高位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">1</span>; max / n &gt; <span class="number">0</span>; n *= <span class="number">10</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            buckets[(arr[i] / n) % <span class="number">10</span>][i] = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (buckets[j][i] != <span class="number">0</span>) &#123;</span><br><span class="line">                    arr[index++] = buckets[j][i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>十大经典排序算法(9)：桶排序</title>
     <url>/2020/03/03/52110/</url>
     <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。桶排序的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排序</p>
@@ -11,6 +167,9 @@
 <li>从不是空的桶里把排好序的数据拼接起来</li>
 </ol>
 <h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><img src="/2020/03/03/52110/bucket.gif" class="">
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bucketSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 找出数组最大最小值</span></span><br><span class="line">    <span class="keyword">int</span> min = arr[<span class="number">0</span>], max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; min) &#123;</span><br><span class="line">            min = arr[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">            max = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化桶</span></span><br><span class="line">    <span class="keyword">int</span> bucketNum = (max - min) / arr.length + <span class="number">1</span>;</span><br><span class="line">    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; bucketArr = <span class="keyword">new</span> ArrayList&lt;&gt;(bucketNum);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bucketNum; i++) &#123;</span><br><span class="line">        bucketArr.add(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 把每个元素放入桶</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> value : arr) &#123;</span><br><span class="line">        <span class="keyword">int</span> num = (value - min) / arr.length;</span><br><span class="line">        bucketArr.get(num).add(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对每个桶进行排序</span></span><br><span class="line">    <span class="keyword">for</span> (ArrayList&lt;Integer&gt; integers : bucketArr) &#123;</span><br><span class="line">        Collections.sort(integers);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 把桶中元素取回原数组</span></span><br><span class="line">    <span class="keyword">int</span> index=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (ArrayList&lt;Integer&gt; integers : bucketArr) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Integer integer : integers) &#123;</span><br><span class="line">            arr[index++]=integer;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -38,7 +197,7 @@
 <li>若原数组值的范围不是从0开始的，计数数组的前面部分空间就会浪费。可以再定义一个变量 min，在给count数组某个下标赋值时把下标减去min</li>
 <li>上面的实现中算法是不稳定的。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">countingSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 数组中最大最小的值</span></span><br><span class="line">    <span class="keyword">int</span> min = <span class="number">100</span>, max = <span class="number">120</span>;</span><br><span class="line">    <span class="keyword">int</span>[] temp = arr.clone();</span><br><span class="line">    <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[max - min + <span class="number">1</span>];</span><br><span class="line">    <span class="comment">// 遍历数组arr</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> value : arr) &#123;</span><br><span class="line">        count[value - min]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; count.length; i++) &#123;</span><br><span class="line">        count[i] += count[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = arr.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        arr[--count[temp[i] - min]] = temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">countingSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 找出数组最大最小值</span></span><br><span class="line">    <span class="keyword">int</span> min = arr[<span class="number">0</span>], max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; min) &#123;</span><br><span class="line">            min = arr[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">            max = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 计数数组，记录每个数组出现的次数</span></span><br><span class="line">    <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[max - min + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> value : arr) &#123;</span><br><span class="line">        count[value - min]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 计数每个数字在排序后数组中应该处于的位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; count.length; i++) &#123;</span><br><span class="line">        count[i] += count[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] temp = arr.clone();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = arr.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        arr[--count[temp[i] - min]] = temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>计数排序是非比较排序，它适用于特定问题，也就是对源数据有要求</p>
 ]]></content>
