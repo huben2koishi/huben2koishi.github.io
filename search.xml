@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Leetcode题解(3)：无重复字符的最长字串</title>
+    <url>/2020/03/14/24182/</url>
+    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
+<p><strong>示例 1:</strong></p>
+<blockquote>
+<p>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。</p>
+</blockquote>
+<p><strong>示例 2:</strong></p>
+<blockquote>
+<p>输入: “bbbbb”<br>输出: 1<br>解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。</p>
+</blockquote>
+<p><strong>示例 3:</strong></p>
+<blockquote>
+<p>输入: “pwwkew”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。<br>     请注意，你的答案必须是 <strong>子串</strong> 的长度，”pwke” 是一个子序列，不是子串。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode题解(2)：两数相加</title>
+    <url>/2020/03/14/33378/</url>
+    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给出两个 <strong>非空</strong> 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 <strong>逆序</strong> 的方式存储的，并且它们的每个节点只能存储 <strong>一位</strong> 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>输出：7 -&gt; 0 -&gt; 8<br>原因：342 + 465 = 807</p>
+</blockquote>
+<p>相关标签：<strong>链表</strong> <strong>数学</strong></p>
+<h2 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode result = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    ListNode a = l1, b = l2, cur = result;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (a != <span class="keyword">null</span> || l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> p = a == <span class="keyword">null</span> ? <span class="number">0</span> : a.val;</span><br><span class="line">        <span class="keyword">int</span> q = b == <span class="keyword">null</span> ? <span class="number">0</span> : b.val;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> v = (p + q + n) % <span class="number">10</span>;</span><br><span class="line">        n = (p + q + n) / <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">        cur.next = <span class="keyword">new</span> ListNode(v);</span><br><span class="line">        cur = cur.next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (a != <span class="keyword">null</span>) &#123;</span><br><span class="line">            a = a.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (b != <span class="keyword">null</span>) &#123;</span><br><span class="line">            b = b.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        cur.next = <span class="keyword">new</span> ListNode(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度 $O(max(m,n))​$，空间复杂度 $O(max(m,n))​$</p>
+]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode题解(1)：两数之和</title>
+    <url>/2020/03/14/26270/</url>
+    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 <code>nums</code> 和一个目标值 <code>target</code>，请你在该数组中找出和为目标值的那 <strong>两个</strong> 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>给定 nums = [2, 7, 11, 15], target = 9<br>因为 nums[0] + nums[1] = 2 + 7 = 9<br>所以返回 [0, 1]</p>
+</blockquote>
+<p>相关标签： <strong>数组</strong> <strong>哈希表</strong></p>
+<h2 id="解法1-暴力破解"><a href="#解法1-暴力破解" class="headerlink" title="解法1 暴力破解"></a>解法1 暴力破解</h2><p>遍历数组，对每个元素 nums[i]，查找剩下的元素中是否有值等于 target-nums[i]</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum1(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == target - nums[j]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, j&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度 $O(n^2)$，空间复杂度 $O(1)​$</p>
+<h2 id="解法2-两遍哈希表"><a href="#解法2-两遍哈希表" class="headerlink" title="解法2 两遍哈希表"></a>解法2 两遍哈希表</h2><p>构建一个哈希表，第一次循环时把元素的值和索引添加到表中，第二次循环时检查每个元素 nums[i] 所对应的目标元素 target-nums[i] 是否在表中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum2(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        map.put( nums[i],i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = target - nums[i];</span><br><span class="line">        Integer index = map.get(val);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(val) &amp;&amp; index != i) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, index&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度 $O(n)$，空间复杂度 $O(n)​$</p>
+<h2 id="解法3-一遍哈希表"><a href="#解法3-一遍哈希表" class="headerlink" title="解法3 一遍哈希表"></a>解法3 一遍哈希表</h2><p>在第一次循环时就检查每个元素 nums[i] 所对应的目标元素 target-nums[i] 是否在表中</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum3(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> val = target - nums[i];</span><br><span class="line">        Integer index = map.get(val);</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(val) &amp;&amp; index != i) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, index&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度 $O(n)$，空间复杂度 $O(n)$</p>
+]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>算法</tag>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法：斐波那契数列</title>
     <url>/2020/03/04/25921/</url>
     <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>斐波那契数列是这样一个数列，它满足：$f(n)=\begin{cases}0&amp;\text{n=0}\\1&amp;\text{n=1}\\f(n-1)+f(n-2)&amp;\text{n&gt;=2}\end{cases}$</p>
@@ -12,7 +94,7 @@
 <img src="/2020/03/04/25921/fibonacci1.jpg" class="">
 
 <p>可见，仅仅是对 fib(10) 的计算，而且仅画出了4层，就出现了大量的重复。随着 n 的递增，为求出结果，重复的计算会急剧增加，这种方法的时间复杂度是 $O(n^2)​$</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>使用尾递归，把每次计算的结果保持下来，计算结果参与下一次的计算，从而减少计算量。原本递归产生的栈的层次下网二叉树一样以指数级增长，现在栈的层次像数组，变成线性增长了</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>使用尾递归，把每次计算的结果保存下来，计算结果参与下一次的计算，从而减少计算量。原本递归产生的栈的层次像二叉树一样以指数级增长，现在栈的层次像数组，变成线性增长了</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">long</span> first, <span class="keyword">long</span> second, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> first + second;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fib(second, first + second, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="实现2"><a href="#实现2" class="headerlink" title="实现2"></a>实现2</h2><p>不使用递归，而是使用迭代的方式实现</p>
@@ -67,6 +149,8 @@
 <p>$$f(12)=f(13)-f(11)=144$$</p>
 <p>第5位为1，此时 k=12，得到最终结果</p>
 <p>$$f(25)=4*f(12)^2-f(11)^2+2=75025$$</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    String b = Integer.toBinaryString(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> prev = <span class="number">1</span>, cur = <span class="number">0</span>, sign = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">long</span> prev2 = prev * prev;</span><br><span class="line">        <span class="keyword">long</span> cur2 = cur * cur;</span><br><span class="line">        cur = <span class="number">4</span> * cur2 - prev2 + sign;</span><br><span class="line">        prev = cur2 + prev2;</span><br><span class="line">        <span class="keyword">if</span> (b.charAt(i) == <span class="string">'0'</span>) &#123;</span><br><span class="line">            cur = cur - prev;</span><br><span class="line">            sign = <span class="number">2</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (b.charAt(i) == <span class="string">'1'</span>) &#123;</span><br><span class="line">            prev = cur - prev;</span><br><span class="line">            sign = -<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -87,6 +171,7 @@
 <th align="center">时间复杂度(最坏)</th>
 <th align="center">时间复杂度(最好)</th>
 <th align="center">空间复杂度</th>
+<th>排序方式</th>
 <th align="center">稳定性</th>
 </tr>
 </thead>
@@ -96,6 +181,7 @@
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(n)$</td>
 <td align="center">$O(1)$</td>
+<td>In-place</td>
 <td align="center">稳定</td>
 </tr>
 <tr>
@@ -104,6 +190,7 @@
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(1)$</td>
+<td>In-place</td>
 <td align="center">不稳定</td>
 </tr>
 <tr>
@@ -112,6 +199,7 @@
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(n)$</td>
 <td align="center">$O(1)$</td>
+<td>In-place</td>
 <td align="center">稳定</td>
 </tr>
 <tr>
@@ -120,6 +208,7 @@
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(n)$</td>
 <td align="center">$O(1)$</td>
+<td>In-place</td>
 <td align="center">不稳定</td>
 </tr>
 <tr>
@@ -128,6 +217,7 @@
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(n\log_2n)$</td>
 <td align="center">$O(n\log_2n)$</td>
+<td>In-place</td>
 <td align="center">不稳定</td>
 </tr>
 <tr>
@@ -136,6 +226,7 @@
 <td align="center">$O(n\log_2n)$</td>
 <td align="center">$O(n\log_2n)$</td>
 <td align="center">$O(n)$</td>
+<td>Out-place</td>
 <td align="center">稳定</td>
 </tr>
 <tr>
@@ -144,6 +235,7 @@
 <td align="center">$O(n\log_2n)$</td>
 <td align="center">$O(n\log_2n)$</td>
 <td align="center">$O(1)$</td>
+<td>In-place</td>
 <td align="center">不稳定</td>
 </tr>
 <tr>
@@ -152,6 +244,7 @@
 <td align="center">$O(n+k)$</td>
 <td align="center">$O(n+k)$</td>
 <td align="center">$O(n+k)$</td>
+<td>Out-place</td>
 <td align="center">稳定</td>
 </tr>
 <tr>
@@ -160,6 +253,7 @@
 <td align="center">$O(n^2)$</td>
 <td align="center">$O(n)$</td>
 <td align="center">$O(n+k)$</td>
+<td>Out-place</td>
 <td align="center">稳定</td>
 </tr>
 <tr>
@@ -168,6 +262,7 @@
 <td align="center">$O(n*k)$</td>
 <td align="center">$O(n*k)$</td>
 <td align="center">$O(n+k)$</td>
+<td>Out-place</td>
 <td align="center">稳定</td>
 </tr>
 </tbody></table>
