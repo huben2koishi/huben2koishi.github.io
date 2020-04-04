@@ -1,6 +1,435 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Redis基础知识(2)：事务</title>
+    <url>/2020/04/04/9773/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>事务可以一次执行多个命令，且有以下两个保证：</p>
+<ul>
+<li>事务是一个单独的隔离操作：事务在的所有命令都会序列化、按顺序执行。事务在执行的过程在，不会被其他客户端发来的命令请求打断</li>
+<li>事务是一个原子操作：事务中的命令要么全部执行，要么全部不执行</li>
+</ul>
+<p>Redis 事务就是一次性、顺序性、排他性的执行一个队列中的一系列命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MULTI</strong></td>
+<td>开启一个事务，执行之后， 客户端可以继续向服务器发送任意多条命令， 这些命令不会立即被执行， 而是被放到一个队列中</td>
+</tr>
+<tr>
+<td><strong>EXEC</strong></td>
+<td>执行队列中的所有命令</td>
+</tr>
+<tr>
+<td><strong>DISCARD</strong></td>
+<td>清空事务队列， 并放弃执行事务</td>
+</tr>
+<tr>
+<td><strong>WATCH</strong></td>
+<td>监视键值对，当事务提交 <strong>EXEC</strong> 时发现监视的对象发生变化时，事务将被取消</td>
+</tr>
+<tr>
+<td><strong>UNWATCH</strong></td>
+<td>取消 <strong>watch</strong> 对所有 key 的监控</td>
+</tr>
+</tbody></table>
+<h2 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h2><p>Redis 中没有事务隔离级别的概念。批量操作在执行 <strong>EXEC</strong> 命令前被放入队列缓存，并不会被实际执行，也就不存在事务内的查询要看到事务里的更新，事务外查询不能看到</p>
+<h2 id="事务中的错误"><a href="#事务中的错误" class="headerlink" title="事务中的错误"></a>事务中的错误</h2><p>使用事务时可能会遇上以下两种错误：</p>
+<ol>
+<li>调用 <strong>EXEC</strong> 之前的错误</li>
+<li>调用 <strong>EXEC</strong> 之后的错误</li>
+</ol>
+<p>调用 <strong>EXEC</strong> 之前的错误，有可能是由于语法有误导致的，也可能时由于内存不足导致的。只要出现某个命令无法成功写入缓冲队列的情况，Redis 都会进行记录，在客户端调用 <strong>EXEC</strong> 时，Redis 会拒绝执行这一事务。（这时2.6.5版本之后的策略。在2.6.5之前的版本中，Redis 会忽略那些入队失败的命令，只执行那些入队成功的命令）</p>
+<p>对于 调用 <strong>EXEC</strong> 之后的错误 ，Redis 则采取了完全不同的策略，即 Redis 不会理睬这些错误，而是继续向下执行事务中的其他命令。这是因为，对于应用层面的错误，并不是 Redis 自身需要考虑和处理的问题，所以一个事务中如果某一条命令执行失败，并不会影响接下来的其他命令的执行</p>
+<p>所以说：<strong>Redis 的事务不保证原子性</strong></p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>NoSQL</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis基础知识(1)：数据类型</title>
+    <url>/2020/04/03/47456/</url>
+    <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Redis支持五种数据类型：string(字符串)，hash(哈希)，list(列表)，set(集合) 及 zset(有序集合)。以及三种特殊的数据类型：bitmaps，hyperloglogs 和 geospatial(地理位置)</p>
+<p>通用命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>EXISTS</strong> key [key …]</td>
+<td>返回 key 是否存在</td>
+</tr>
+<tr>
+<td><strong>DEL</strong> key [key …]</td>
+<td>删除指定的 key</td>
+</tr>
+<tr>
+<td><strong>KEYS</strong> pattern</td>
+<td>查找所有符合给定 pattern 的 key</td>
+</tr>
+<tr>
+<td><strong>TYPE</strong> key</td>
+<td>返回 key 所存储的 value 的数据类型</td>
+</tr>
+<tr>
+<td><strong>EXPIRE</strong> key seconds</td>
+<td>设置 key 的过期时间</td>
+</tr>
+<tr>
+<td><strong>TTL</strong> key</td>
+<td>返回 key 的过期时间</td>
+</tr>
+</tbody></table>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>string是最简单Redis类型。如果你只用这种类型，Redis就像一个可以持久化的memcached服务器</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SET</strong> key value [<strong>EX</strong> seconds] [<strong>PX</strong> milliseconds] [<strong>NX</strong> | <strong>XX</strong>]</td>
+<td>将键 key 设定为指定的“字符串”值</td>
+</tr>
+<tr>
+<td><strong>GET</strong> key</td>
+<td>返回 key 的 value</td>
+</tr>
+<tr>
+<td><strong>STRLEN</strong> key</td>
+<td>返回 key 的 string 类型 value 的长度</td>
+</tr>
+<tr>
+<td><strong>INCR</strong> key</td>
+<td>对存储在指定 key 的数值执行原子的加1操作</td>
+</tr>
+<tr>
+<td><strong>INCRBY</strong> key increment</td>
+<td>将 key 对应的数字加 increment</td>
+</tr>
+<tr>
+<td><strong>DECR</strong> key</td>
+<td>对 key 对应的数字做减1操作</td>
+</tr>
+<tr>
+<td><strong>DECRBY</strong> key decrement</td>
+<td>将 key 对应的数字减 decrement</td>
+</tr>
+<tr>
+<td><strong>MSET</strong> key value [key value …]</td>
+<td>返回所有指定的 key 的 value</td>
+</tr>
+<tr>
+<td><strong>MGET</strong> key [key …]</td>
+<td>对应给定的 keys 到他们相应的 values 上</td>
+</tr>
+<tr>
+<td><strong>GETRANGE</strong> key start end</td>
+<td>返回 key 对应的字符串 value 的子串</td>
+</tr>
+<tr>
+<td><strong>SETRANGE</strong> key offset value</td>
+<td>覆盖 key 对应的 string 的一部分</td>
+</tr>
+</tbody></table>
+<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>Redis 的 list 基于链表实现。这意味着即使在一个 list 中有数百万个元素，在头部或尾部添加一个元素的操作，其时间复杂度也是常数级别的。但链表型 list 的元素定位会比较慢</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LINDEX</strong> key index</td>
+<td>返回 list 元素 index 位置的值</td>
+</tr>
+<tr>
+<td><strong>LPUSH</strong> key value [value …]</td>
+<td>将所有指定的值插入到 key 对应的 list 的头部</td>
+</tr>
+<tr>
+<td><strong>RPUSH</strong> key value [value …]</td>
+<td>将所有指定的值插入到 key 对应的 list 的尾部</td>
+</tr>
+<tr>
+<td><strong>LRANGE</strong> key start end</td>
+<td>返回 key 对应的 list 里指定范围内的元素</td>
+</tr>
+<tr>
+<td><strong>LPOP</strong> key</td>
+<td>移除并且返回 key 对应的 list 的第一个元素</td>
+</tr>
+<tr>
+<td><strong>RPOP</strong> key</td>
+<td>移除并且返回 key 对应的 list 的最后一个元素</td>
+</tr>
+<tr>
+<td><strong>LLEN</strong> key</td>
+<td>返回存储在 key 对应的 list 的长度</td>
+</tr>
+<tr>
+<td><strong>LREM</strong> key count value</td>
+<td>从 key 对应的 list 里移除前 count 次出现的值为 value 的元素</td>
+</tr>
+<tr>
+<td><strong>LTRIM</strong> key start end</td>
+<td>移除 key 对应的 list 里指定范围外的元素</td>
+</tr>
+<tr>
+<td><strong>RPOPLPUSH</strong> source destination</td>
+<td>原子性地 <strong>RPOP</strong> source 并 <strong>LPUSH</strong> 到 destination</td>
+</tr>
+<tr>
+<td><strong>LSET</strong> key index value</td>
+<td>设置 key 对应的 list 元素 index 位置的值为 value</td>
+</tr>
+<tr>
+<td><strong>LINSERT</strong> key <strong>BEFORE</strong>|<strong>AFTER</strong> pivot value</td>
+<td>把 value 插入 key 对应的 list 中在基准值 pivot 的前面或后面</td>
+</tr>
+</tbody></table>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p> Set 是 String 的无序排列，集合中的元素没有先后顺序</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SADD</strong> key value [value …]</td>
+<td>添加所有指定的值到 key 对应的 set 中</td>
+</tr>
+<tr>
+<td><strong>SMEMBERS</strong> key</td>
+<td>返回 key 对应的 set 中所有的元素</td>
+</tr>
+<tr>
+<td><strong>SISMEMBER</strong> key member</td>
+<td>返回 member 是否是 key 对应的 set 中的成员</td>
+</tr>
+<tr>
+<td><strong>SCARD</strong>  key</td>
+<td>返回 key 对应的 set 中元素的个数</td>
+</tr>
+<tr>
+<td><strong>SREM</strong> key member [member …]</td>
+<td>从 key 对应的 set 中移除指定的元素</td>
+</tr>
+<tr>
+<td><strong>SRANDMEMBER</strong> key [count]</td>
+<td>随机返回 key 对应的 set 中的 count 个元素</td>
+</tr>
+<tr>
+<td><strong>SPOP</strong> key [count]</td>
+<td>随机删除 key 对应的 set 中的 count 个元素</td>
+</tr>
+<tr>
+<td><strong>SMOVE</strong> source destination member</td>
+<td>将 member 从 source 移动到 destination 中</td>
+</tr>
+<tr>
+<td><strong>SDIFF</strong> key [key …]</td>
+<td>返回 key 对应的 set 与给定 set 的差集</td>
+</tr>
+<tr>
+<td><strong>SINTER</strong> key [key …]</td>
+<td>返回 key 对应的 set 与给定 set 的交集</td>
+</tr>
+<tr>
+<td><strong>SUNION</strong> key [key …]</td>
+<td>返回 key 对应的 set 与给定 set 的并集</td>
+</tr>
+</tbody></table>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>Hash 便于表示对象，实际上，你可以放入一个 hash 的域数量实际上没有限制（除了可用内存以外）。所以你可以在你的应用中以不同的方式使用 hash</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>HSET</strong> key field value</td>
+<td>设置 key 对应的 hash 中指定字段的值</td>
+</tr>
+<tr>
+<td><strong>HGET</strong> key field</td>
+<td>返回 key 对应的 hash 中指定字段的值</td>
+</tr>
+<tr>
+<td><strong>HMSET</strong> key field value [field value …]</td>
+<td>设置 key 对应的 hash 中多个字段的值</td>
+</tr>
+<tr>
+<td><strong>HMGET</strong> key field [field …]</td>
+<td>返回 key 对应的 hash 中多个字段的值</td>
+</tr>
+<tr>
+<td><strong>HGETALL</strong> key</td>
+<td>返回 key 对应的 hash 中所有字段和值</td>
+</tr>
+<tr>
+<td><strong>HDEL</strong> key field [field …]</td>
+<td>从 key 对应的 hash 中移除指定的字段</td>
+</tr>
+<tr>
+<td><strong>HLEN</strong> key</td>
+<td>返回 key 对应的 hash 中字段的数量</td>
+</tr>
+<tr>
+<td><strong>HEXISTS</strong> key field</td>
+<td>返回 key 对应的 hash 里面 field 是否存在</td>
+</tr>
+<tr>
+<td><strong>HKEYS</strong> key</td>
+<td>返回 key 对应的 hash 里面中所有字段</td>
+</tr>
+<tr>
+<td><strong>HVALS</strong> key</td>
+<td>返回 key 对应的 hash 里面中所有值</td>
+</tr>
+<tr>
+<td><strong>HINCRBY</strong> key field increment</td>
+<td>增加 key 对应的 hash 中指定字段的数值</td>
+</tr>
+</tbody></table>
+<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p>在 set 的基础上每个元素都会关联一个值，通过这个值为集合中的成员进行从小到大的排序</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ZADD</strong> key [<strong>NX</strong> | <strong>XX</strong>] [<strong>CH</strong>] [<strong>INCR</strong>] score member [score member …]</td>
+<td>将所有指定元素添加到 key 对应的 zset 中</td>
+</tr>
+<tr>
+<td><strong>ZRANGE</strong> key start stop [<strong>WITHSCORES</strong>]</td>
+<td>返回 key 对应的 zset 中的指定范围的元素</td>
+</tr>
+<tr>
+<td><strong>ZREVRANGE</strong> key start stop [<strong>WITHSCORES</strong>]</td>
+<td>返回 key 对应的 zset 中的指定范围的元素</td>
+</tr>
+<tr>
+<td><strong>ZRANGEBYSCORE</strong> key min max [<strong>WITHSCORES</strong>] [<strong>LIMIT</strong> offset count]</td>
+<td>返回 key 对应的 zset 中 score 值在 min 和 max 之间的所有元素</td>
+</tr>
+<tr>
+<td><strong>ZREM</strong> key member [member …]</td>
+<td>从 key 对应的 zset 中移除指定的元素</td>
+</tr>
+<tr>
+<td><strong>ZCARD</strong>  key</td>
+<td>返回 key 对应的 zset 中元素的个数</td>
+</tr>
+<tr>
+<td><strong>ZCOUNT</strong> key min max</td>
+<td>返回 key 对应的 zset 中 score 值在 min 和 max 之间的成员个数</td>
+</tr>
+</tbody></table>
+<h3 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a>geospatial</h3><p>将指定的地理空间位置（纬度、经度、名称）添加到指定的 key 中。这些数据将会存储到 zset</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GEOADD</strong> key longitude latitude member [longitude latitude member …]</td>
+<td>将指定的地理空间位置（纬度、经度、名称）添加到指定的 key 中</td>
+</tr>
+<tr>
+<td><strong>GEODIST</strong> key member1 member2 [<strong>unit</strong>]</td>
+<td>返回两个给定位置之间的距离</td>
+</tr>
+<tr>
+<td><strong>GEOHASH</strong> key member [member …]</td>
+<td>返回一个或多个位置元素的 <strong>Geohash</strong> 表示</td>
+</tr>
+<tr>
+<td><strong>GEOPOS</strong> key member [member …]</td>
+<td>从 key 里返回所有给定位置元素的位置</td>
+</tr>
+<tr>
+<td><strong>GEORADIUS</strong> key longitude latitude radius <strong>m</strong>|<strong>km</strong>|<strong>ft</strong>|<strong>mi</strong> [<strong>WITHCOORD</strong>] [<strong>WITHDIST</strong>] [<strong>WITHHASH</strong>] [<strong>COUNT</strong> count]</td>
+<td>找出给定的经纬度指定范围内的元素</td>
+</tr>
+<tr>
+<td><strong>GEORADIUSBYMEMBER</strong> key member radius <strong>m</strong>|<strong>km</strong>|<strong>ft</strong>|<strong>mi</strong> [<strong>WITHCOORD</strong>] [<strong>WITHDIST</strong>] [<strong>WITHHASH</strong>] [<strong>COUNT</strong> count]</td>
+<td>找出给定的位置元素指定范围内的元素</td>
+</tr>
+</tbody></table>
+<h3 id="hyperloglogs"><a href="#hyperloglogs" class="headerlink" title="hyperloglogs"></a>hyperloglogs</h3><p>用于基数统计</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PFADD</strong> key element [element …]</td>
+<td>将所有指定元素添加到 key 对应的 hyperloglogs 中</td>
+</tr>
+<tr>
+<td><strong>PFCOUNT</strong> key [key …]</td>
+<td>返回 key 对应的 hyperloglogs 中元素的个数</td>
+</tr>
+<tr>
+<td><strong>PFMERGE</strong> destkey sourcekey [sourcekey …]</td>
+<td>将多个 hyperloglogs 合并为一个</td>
+</tr>
+</tbody></table>
+<h3 id="bitmaps"><a href="#bitmaps" class="headerlink" title="bitmaps"></a>bitmaps</h3><p>位图是在 string 类型上定义的一组面向位的操作</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SETBIT</strong> key offset value</td>
+<td>设置 key 对应的 string 在 offset 处的 bit 值</td>
+</tr>
+<tr>
+<td><strong>GETBIT</strong> key offset</td>
+<td>返回 key 对应的 string 在 offset 处的 bit 值</td>
+</tr>
+<tr>
+<td><strong>BITCOUNT</strong> key [start end]</td>
+<td>统计字符串指定范围内被设置为1的 bit 数</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>NoSQL</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java多线程(4)：线程常用方法</title>
     <url>/2020/03/28/4101/</url>
     <content><![CDATA[<h2 id="唤醒与等待"><a href="#唤醒与等待" class="headerlink" title="唤醒与等待"></a>唤醒与等待</h2><p>帮助线程传递线程关心的时间状态的方法有这些：</p>
