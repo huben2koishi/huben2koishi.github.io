@@ -1,6 +1,508 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>常用的正则表达式</title>
+    <url>/2020/05/02/44074/</url>
+    <content><![CDATA[<h2 id="邮箱"><a href="#邮箱" class="headerlink" title="邮箱"></a>邮箱</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$</span><br></pre></td></tr></table></figure>
+
+<p>只允许英文字母、数字、下划线、英文句号、以及中划线组成</p>
+<img src="/2020/05/02/44074/mail1.svg" class="">
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$</span><br></pre></td></tr></table></figure>
+
+<p>名称允许汉字、字母、数字，域名只允许英文域名</p>
+<img src="/2020/05/02/44074/mail2.svg" class="">
+
+<h2 id="电话"><a href="#电话" class="headerlink" title="电话"></a>电话</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^1(3|4|5|6|7|8|9)\d&#123;9&#125;$</span><br></pre></td></tr></table></figure>
+
+<p>手机号</p>
+<img src="/2020/05/02/44074/phone1.svg" class="">
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(\(\d&#123;3,4&#125;\)|\d&#123;3,4&#125;-|\s)?\d&#123;8&#125;</span><br></pre></td></tr></table></figure>
+
+<p>固定电话</p>
+<img src="/2020/05/02/44074/phone2.svg" class="">
+
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^((http:\&#x2F;\&#x2F;)|(https:\&#x2F;\&#x2F;))?([a-zA-Z0-9]([a-zA-Z0-9\-]&#123;0,61&#125;[a-zA-Z0-9])?\.)+[a-zA-Z]&#123;2,6&#125;(\&#x2F;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/05/02/44074/domain.svg" class="">
+
+<h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.)&#123;3&#125;(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/05/02/44074/ip.svg" class="">
+
+<h2 id="汉字"><a href="#汉字" class="headerlink" title="汉字"></a>汉字</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^[\u4e00-\u9fa5]&#123;0,&#125;$</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/05/02/44074/char.svg" class="">
+
+<h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^-?[1-9]\d*$</span><br></pre></td></tr></table></figure>
+
+<p>整数</p>
+<img src="/2020/05/02/44074/num1.svg" class="">
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$</span><br></pre></td></tr></table></figure>
+
+<p>浮点数</p>
+<img src="/2020/05/02/44074/num2.svg" class="">
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>正则表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正则表达式详解</title>
+    <url>/2020/05/01/19648/</url>
+    <content><![CDATA[<p><strong>正则表达式</strong>(regular expression)描述了一种字符串匹配的模式(pattern)，可以用来：</p>
+<ul>
+<li>检查一个字符串是否含有某种子字符串</li>
+<li>将匹配的子字符串替换</li>
+</ul>
+<p>正则表达式是由普通字符（例如数字、字母或下划线）以及特殊字符（称为 <strong>元字符</strong>）组成的文字模式。描述在搜索文本时要匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配</p>
+<h2 id="基本匹配"><a href="#基本匹配" class="headerlink" title="基本匹配"></a>基本匹配</h2><p>正则表达式其实就是在执行搜索时的格式，它由一些字母和数字组合而成</p>
+<p>例如：一个正则表达式 <code>the</code>，它表示一个规则：由字母 <code>t</code> 开始，接着是 <code>h</code> ，再接着是 <code>e</code></p>
+<blockquote>
+<p><strong>the</strong> =&gt; The fat cat sat on <strong>the</strong> mat.</p>
+</blockquote>
+<p>正则表达式 <code>123</code> 匹配字符串 <code>123</code>。它逐个字符的与输入的正则表达式做比较</p>
+<p>正则表达式是大小写敏感的，所以 <code>The</code> 不会匹配 <code>the</code></p>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>正则表达式主要依赖于元字符。元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.</code></td>
+<td>匹配除换行符 <code>\n</code> 之外的任何单字符</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>字符种类。匹配方括号中不包含的字符</td>
+</tr>
+<tr>
+<td><code>[^ ]</code></td>
+<td>否定字符种类。匹配方括号中不包含的字符</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>匹配前面的子表达式零次或多次</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>匹配前面的子表达式一次或多次</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>匹配前面的子表达式零次或一次，或指明一个非贪婪限定符</td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td>标记限定符表达式的开始和结束位置</td>
+</tr>
+<tr>
+<td><code>()</code></td>
+<td>标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>或运算符，匹配符号前或后的字符</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>转义字符，用于匹配一些保留的字符 <code>[ ] ( ) { } . * + ? ^ $ \</code></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>匹配输入字符串的开始位置</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>匹配输入字符串的结尾位置</td>
+</tr>
+</tbody></table>
+<h3 id="点运算符"><a href="#点运算符" class="headerlink" title="点运算符 ."></a>点运算符 <code>.</code></h3><p><code>.</code> 是元字符中最简单的例子。<code>.</code> 匹配任意单个字符，但不匹配换行符。例如，表达式 <code>.ar</code> 匹配一个任意字符后面跟着是 <code>a</code> 和 <code>r</code> 的字符串</p>
+<blockquote>
+<p><strong>.ar</strong> =&gt; The <strong>car</strong> parked in the <strong>gar</strong>age.</p>
+</blockquote>
+<h3 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h3><p>字符集也叫做字符类。方括号用来指定一个字符集。在方括号中使用连字符来指定字符集的范围。在方括号中的字符集不关心顺序。例如，表达式 <code>[Tt]he</code>  匹配  <code>the</code>  和  <code>The</code></p>
+<blockquote>
+<p><strong>[Tt]he</strong> =&gt; <strong>The</strong> car parked in <strong>the</strong> garage.</p>
+</blockquote>
+<p>方括号内的句号就表示句号。表达式  <code>ar[.]</code>  匹配  <code>ar.</code> 字符串</p>
+<blockquote>
+<p><strong>ar[.]</strong> =&gt; A garage is a good place to park a c<strong>ar.</strong></p>
+</blockquote>
+<h4 id="否定字符集"><a href="#否定字符集" class="headerlink" title="否定字符集"></a>否定字符集</h4><p>一般来说 <code>^</code> 表示一个字符串的开头，但它用在一个方括号的开头的时候，它表示这个字符集是否定的。例如，表达式 <code>[^c]ar</code> 匹配一个后面跟着 <code>ar</code> 的除了 <code>c</code> 的任意字符</p>
+<blockquote>
+<p><strong>[^c]ar</strong> =&gt; The car <strong>par</strong>ked in the <strong>gar</strong>age.</p>
+</blockquote>
+<h3 id="重复次数"><a href="#重复次数" class="headerlink" title="重复次数"></a>重复次数</h3><p>后面跟着元字符 <code>+</code>，<code>*</code> or <code>?</code> 的，用来指定匹配子模式的次数。这些元字符在不同的情况下有着不同的意思</p>
+<h4 id="星号"><a href="#星号" class="headerlink" title="星号 *"></a>星号 <code>*</code></h4><p><code>*</code> 表示匹配上一个匹配规则的零次或多次。例如，表达式 <code>a*</code> 匹配0或多个以a开头的字符。表达式 <code>[a-z]*</code> 匹配一个行中所有以小写字母开头的字符串</p>
+<blockquote>
+<p><strong>[a-z]*</strong> =&gt; T<strong>he car parked in the garage</strong> #21.</p>
+</blockquote>
+<p><code>*</code> 字符和 <code>.</code> 字符搭配可以匹配所有的字符 <code>.*</code>。<code>*</code> 和表示匹配空格的符号 <code>\s</code> 连起来用，如表达式 <code>\s*cat\s*</code> 匹配0或更多个空格开头和0或更多个空格结尾的cat字符串</p>
+<blockquote>
+<p><strong>\s*cat\s*</strong> =&gt; The fat <strong>cat</strong> sat on the con<strong>cat</strong>enation.</p>
+</blockquote>
+<h4 id="加号"><a href="#加号" class="headerlink" title="加号 +"></a>加号 <code>+</code></h4><p><code>+</code> 表示匹配上一个字符的一次或多次。例如表达式 <code>c.+t</code>  匹配以首字母 <code>c</code> 开头以 <code>t</code> 结尾，中间跟着至少一个字符的字符串</p>
+<blockquote>
+<p><strong>c.+t</strong> =&gt; The fat <strong>cat sat on the mat</strong>.</p>
+</blockquote>
+<h4 id="问号"><a href="#问号" class="headerlink" title="问号 ?"></a>问号 <code>?</code></h4><p><code>?</code> 标记前面的字符为可选，该符号匹配前一个字符的零次或一次。例如，表达式 <code>[T]?he</code> 匹配字符串 <code>he</code> 和 <code>The</code></p>
+<blockquote>
+<p><strong>[T]he</strong> =&gt; <strong>The</strong> car is parked in the garage.<br><strong>[T]?he</strong> =&gt; <strong>The</strong> car is parked in t<strong>he</strong> garage.</p>
+</blockquote>
+<h3 id="花括号"><a href="#花括号" class="headerlink" title="花括号 {}"></a>花括号 <code>{}</code></h3><p>在正则表达式中 <code>{}</code> 是一个量词，常用来一个或一组字符重复出现的次数。例如， 表达式 <code>[0-9]{2,3}</code> 匹配最少2位最多3位 <code>0~9</code> 的数字</p>
+<blockquote>
+<p><strong>[0-9]{2,3}</strong> =&gt; The number was 9.<strong>999</strong>7 but we rounded it off to <strong>10</strong>.0.</p>
+</blockquote>
+<p>可以省略第二个参数。例如，<code>[0-9]{2,}</code> 匹配至少2位 <code>0~9</code> 的数字</p>
+<blockquote>
+<p><strong>[0-9]{2,}</strong> =&gt; The number was 9.<strong>9997</strong> but we rounded it off to <strong>10</strong>.0.</p>
+</blockquote>
+<p>如果逗号也省略掉则表示重复固定的次数。例如，<code>[0-9]{3}</code> 匹配3位数字</p>
+<blockquote>
+<p><strong>[0-9]{3}</strong> =&gt; The number was 9.<strong>999</strong>7 but we rounded it off to 10.0.</p>
+</blockquote>
+<h3 id="字符组"><a href="#字符组" class="headerlink" title="字符组 (...)"></a>字符组 <code>(...)</code></h3><p>字符组是一组写在圆括号中的子模式 <code>(...)</code>。例如之前把一个量词放在一个字符之后，它会重复前一个字符。 但是，如果我们把量词放在一个字符组之后，它会重复整个字符组。例如，表达式 <code>(ab)*</code> 匹配连续出现 0 或更多个 <code>ab</code></p>
+<p>我们还可以在 <code>()</code> 中用或字符 <code>|</code> 表示或。例如，<code>(c|g|p)ar</code> 匹配 <code>car</code> 或 <code>gar</code> 或 <code>par</code></p>
+<blockquote>
+<p><strong>(c|g|p)ar</strong> =&gt; The <strong>car</strong> is <strong>par</strong>ked in the <strong>gar</strong>age.</p>
+</blockquote>
+<h3 id="或运算符"><a href="#或运算符" class="headerlink" title="或运算符 |"></a>或运算符 <code>|</code></h3><p>或运算符就表示或，用作判断条件</p>
+<p>例如 <code>(T|t)he|car</code> 匹配 <code>(T|t)he</code> 或 <code>car</code></p>
+<blockquote>
+<p><strong>(T|t)he|car</strong> =&gt; <strong>The car</strong> is parked in <strong>the</strong> garage.</p>
+</blockquote>
+<h3 id="转义特殊字符"><a href="#转义特殊字符" class="headerlink" title="转义特殊字符 \"></a>转义特殊字符 <code>\</code></h3><p>反斜线 <code>\</code> 在表达式中用于转义紧跟其后的字符。这将允许你使用保留字符 <code>{ } [ ] / \ + * . $ ^ | ?</code> 来作为匹配字符。如果想要匹配这些特殊字符则要在其前面加上反斜线 <code>\</code></p>
+<p>例如 <code>.</code> 是用来匹配除换行符外的所有字符的。如果想要匹配句子中的 <code>.</code> 则要写成 <code>\.</code> 以下这个例子 <code>\.?</code> 是选择性匹配 <code>.</code></p>
+<blockquote>
+<p><strong>(f|c|m)at.?</strong> =&gt; The <strong>fat cat</strong> sat on the <strong>mat.</strong></p>
+</blockquote>
+<h3 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h3><p>在正则表达式中，想要匹配指定开头或结尾的字符串就要使用到定位符。<code>^</code> 指定开头，<code>$</code> 指定结尾</p>
+<h4 id="插入符号"><a href="#插入符号" class="headerlink" title="插入符号 ^"></a>插入符号 <code>^</code></h4><p>插入符号 <code>^</code> 用于检查匹配字符是否是输入字符串的第一个字符</p>
+<p>例如，在 <code>abc</code> 中使用表达式 <code>^a</code> 会得到结果 <code>a</code>。但如果使用 <code>^b</code> 将匹配不到任何结果。因为在字符串 <code>abc</code> 中并不是以 <code>b</code> 开头</p>
+<p>例如，<code>^(T|t)he</code> 匹配以 <code>The</code> 或 <code>the</code> 开头的字符串</p>
+<blockquote>
+<p><strong>(T|t)he</strong> =&gt; <strong>The</strong> car is parked in <strong>the</strong> garage.<br><strong>^(T|t)he</strong> =&gt; <strong>The</strong> car is parked in the garage.</p>
+</blockquote>
+<h4 id="美元符号"><a href="#美元符号" class="headerlink" title="美元符号 $"></a>美元符号 <code>$</code></h4><p>美元符号 <code>$</code> 用于检查匹配字符是否是输入字符串的最后一个字符</p>
+<p>例如，<code>(at\.)$</code> 匹配以 <code>at.</code> 结尾的字符串</p>
+<blockquote>
+<p><strong>(at.)</strong> =&gt; The fat c<strong>at. sat.</strong> on the m<strong>at.</strong><br><strong>(at.)$</strong> =&gt; The fat cat. sat. on the m<strong>at.</strong></p>
+</blockquote>
+<h2 id="简写字符集"><a href="#简写字符集" class="headerlink" title="简写字符集"></a>简写字符集</h2><p>正则表达式为常用的字符集和常用的正则表达式提供了简写。这包括所有大写和小写字母、所有数字、所有标点符号和没有显式指定为元字符的所有可打印和不可打印字符</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>匹配一个数字字符。等价于 <code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配一个非数字字符。等价于 <code>[^0-9]</code></td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>匹配字母、数字、下划线。等价于 <code>[A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配非字母、数字、下划线。等价于 <code>[^A-Za-z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\cx</code></td>
+<td>匹配由x指明的控制字符。例如， <code>\cM</code> 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>匹配一个换页符。等价于 <code>\x0c</code> 和 <code>\cL</code></td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>匹配一个换行符。等价于 <code>\x0a</code> 和 <code>\cJ</code></td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>匹配一个回车符。等价于 <code>\x0d</code> 和 <code>\cM</code></td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>匹配一个制表符。等价于 <code>\x09</code> 和 <code>\cI</code></td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>匹配一个垂直制表符。等价于 <code>\x0b</code> 和 <code>\cK</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于 <code>[ \f\n\r\t\v]</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配任何非空白字符。等价于 <code>[^ \f\n\r\t\v]</code></td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>匹配一个字边界，即字与空格间的位置</td>
+</tr>
+<tr>
+<td><code>\B</code></td>
+<td>非字边界匹配</td>
+</tr>
+</tbody></table>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>是特殊类型的 非捕获组 (用于匹配模式，但不包括在匹配列表中)。当我们在一种特定模式之前或者之后有这种模式时，会优先使用断言。 例如我们想获取输入字符串 $4.44 and $10.88 中带有前缀 $ 的所有数字。我们可以使用这个正则表达式 <code>(?&lt;=\$)[0-9\.]*</code>，表示: 获取包含 . 字符且前缀为 $ 的所有数字。 以下是正则表达式中使用的断言:</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>(exp)</code></td>
+<td>匹配 exp 并获取这一匹配</td>
+</tr>
+<tr>
+<td><code>(?:exp)</code></td>
+<td>匹配 exp 但不获取匹配结果</td>
+</tr>
+<tr>
+<td><code>(?=exp)</code></td>
+<td>零宽度正预测先行断言，匹配后面跟的是exp的位置</td>
+</tr>
+<tr>
+<td><code>(?!exp)</code></td>
+<td>零宽度负预测先行断言，匹配后面跟的不是exp的位置</td>
+</tr>
+<tr>
+<td><code>(?&lt;=exp)</code></td>
+<td>零宽度正回顾后发断言，匹配前面是exp的位置</td>
+</tr>
+<tr>
+<td><code>(?&lt;!exp)</code></td>
+<td>零宽度负回顾后发断言，匹配前面不是exp的位置</td>
+</tr>
+</tbody></table>
+<h3 id="正向先行断言"><a href="#正向先行断言" class="headerlink" title="正向先行断言 ?=..."></a>正向先行断言 <code>?=...</code></h3><p>正向先行断言表示第一部分表达式之后必须跟着 <code>?=...</code> 定义的表达式</p>
+<p>返回结果只包含满足匹配条件的第一部分表达式。定义一个正先行断言要使用 <code>()</code>。在括号内部使用一个问号和等号： <code>(?=...)</code></p>
+<p>正先行断言的内容写在括号中的等号后面。例如，表达式 <code>(T|t)he(?=\sfat)</code> 匹配 <code>The</code> 和 <code>the</code>，在括号中我们又定义了正先行断言 <code>(?=\sfat)</code> ，即 <code>The</code> 和 <code>the</code> 后面紧跟着 <code>(空格)fat</code></p>
+<blockquote>
+<p><strong>(T|t)he(?=\sfat)</strong> =&gt; <strong>The</strong> fat cat sat on the mat.</p>
+</blockquote>
+<h3 id="负向先行断言"><a href="#负向先行断言" class="headerlink" title="负向先行断言 ?!..."></a>负向先行断言 <code>?!...</code></h3><p>负向先行断言用于筛选所有匹配结果，筛选条件为其后不跟随着断言中定义的格式。<code>正先行断言</code> 定义和 <code>负向先行断言</code> 一样，区别就是 <code>=</code> 替换成 <code>!</code> 也就是 <code>(?!...)</code></p>
+<p>表达式 <code>(T|t)he(?!\sfat)</code> 匹配 <code>The</code> 和 <code>the</code>，且其后不跟着 <code>(空格)fat</code></p>
+<blockquote>
+<p><strong>(T|t)he(?!\sfat)</strong> =&gt; The fat cat sat on <strong>the</strong> mat.</p>
+</blockquote>
+<h3 id="正向后发断言-lt"><a href="#正向后发断言-lt" class="headerlink" title="正向后发断言 ?&lt;=..."></a>正向后发断言 <code>?&lt;=...</code></h3><p>正向后发断言 记作 <code>(?&lt;=...)</code> 用于筛选所有匹配结果，筛选条件为 其前跟随着断言中定义的格式。例如，表达式 <code>(?&lt;=(T|t)he\s)(fat|mat)</code> 匹配 <code>fat</code> 和 <code>mat</code>，且其前跟着 <code>The</code> 或 <code>the</code></p>
+<blockquote>
+<p><strong>(?&lt;=(T|t)he\s)(fat|mat)</strong> =&gt; The <strong>fat</strong> cat sat on the <strong>mat</strong>.</p>
+</blockquote>
+<h3 id="负向后发断言-lt"><a href="#负向后发断言-lt" class="headerlink" title="负向后发断言 ?&lt;!..."></a>负向后发断言 <code>?&lt;!...</code></h3><p>负向后发断言 记作 <code>(?&lt;!...)</code> 用于筛选所有匹配结果，筛选条件为 其前不跟随着断言中定义的格式。例如，表达式 <code>(?&lt;!(T|t)he\s)(cat)</code> 匹配 <code>cat</code>，且其前不跟着 <code>The</code> 或 <code>the</code></p>
+<blockquote>
+<p><strong>(?&lt;!(T|t)he\s)(cat)</strong> =&gt; The cat sat on <strong>cat</strong>.</p>
+</blockquote>
+<h2 id="标志"><a href="#标志" class="headerlink" title="标志"></a>标志</h2><p>标志也叫模式修正符，因为它可以用来修改表达式的搜索结果。这些标志可以任意的组合使用，它也是整个正则表达式的一部分</p>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>g</td>
+<td>全局搜索</td>
+</tr>
+<tr>
+<td>m</td>
+<td>多行修饰符：锚点元字符 <code>^</code> <code>$</code> 工作范围在每行的起始</td>
+</tr>
+</tbody></table>
+<h3 id="忽略大小写（Case-Insensitive）"><a href="#忽略大小写（Case-Insensitive）" class="headerlink" title="忽略大小写（Case Insensitive）"></a>忽略大小写（Case Insensitive）</h3><p>修饰符 <code>i</code> 用于忽略大小写。例如，表达式 <code>/The/gi</code> 表示在全局搜索 <code>The</code>，在后面的 <code>i</code> 将其条件修改为忽略大小写，则变成搜索 <code>the</code> 和 <code>The</code></p>
+<blockquote>
+<p><strong>The</strong> =&gt; <strong>The</strong> fat cat sat on the mat.<br><strong>/The/gi</strong> =&gt; <strong>The</strong> fat cat sat on <strong>the</strong> mat.</p>
+</blockquote>
+<h3 id="全局搜索（Global-search）"><a href="#全局搜索（Global-search）" class="headerlink" title="全局搜索（Global search）"></a>全局搜索（Global search）</h3><p>修饰符 <code>g</code> 用于执行全局搜索匹配，即不仅仅返回第一个匹配的，而是返回全部。例如，表达式 <code>/.(at)/g</code> 表示搜索任意字符（除了换行）+ <code>at</code>，并返回全部结果</p>
+<blockquote>
+<p><strong>/.(at)/</strong> =&gt; The <strong>fat</strong> cat sat on the mat.<br><strong>/.(at)/g</strong> =&gt; The <strong>fat cat sat</strong> on the <strong>mat</strong>.</p>
+</blockquote>
+<h3 id="多行修饰符（Multiline）"><a href="#多行修饰符（Multiline）" class="headerlink" title="多行修饰符（Multiline）"></a>多行修饰符（Multiline）</h3><p>修饰符 <code>m</code> 用于执行多行匹配</p>
+<p>像之前介绍的 <code>(^,$)</code> 用于检查格式是否是在待检测字符串的开头或结尾。但我们如果想要它在每行的开头和结尾生效，我们需要用到多行修饰符 <code>m</code></p>
+<p>例如，表达式 <code>/at(.)?$/gm</code> 表示小写字符 <code>a</code> 后跟小写字符 <code>t</code> ，末尾可选除换行符外任意字符。根据 <code>m</code> 修饰符，现在表达式匹配每行的结尾</p>
+<blockquote>
+<p><strong>/.at(.)?$/</strong> =&gt; The fat<br>cat sat<br>on the <strong>mat.</strong><br><strong>/.at(.)?$/gm</strong> =&gt; The <strong>fat</strong><br>cat <strong>sat</strong><br>on the <strong>mat.</strong></p>
+</blockquote>
+<h2 id="贪婪匹配与惰性匹配"><a href="#贪婪匹配与惰性匹配" class="headerlink" title="贪婪匹配与惰性匹配"></a>贪婪匹配与惰性匹配</h2><p>正则表达式默认采用贪婪匹配模式，在该模式下意味着会匹配尽可能长的子串。我们可以使用 <code>?</code> 将贪婪匹配模式转化为惰性匹配模式</p>
+<blockquote>
+<p><strong>/(.*at)/</strong> =&gt; <strong>The fat cat sat on the mat</strong>.<br><strong>/(.*?at)/</strong> =&gt; <strong>The fat</strong> cat sat on the mat.</p>
+</blockquote>
+<h2 id="其它元字符"><a href="#其它元字符" class="headerlink" title="其它元字符"></a>其它元字符</h2><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\xn</code></td>
+<td>匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，<code>\x41</code> 匹配 <code>A</code>。<code>\x041</code> 则等价于 <code>\x04</code> + <code>1</code>。正则表达式中可以使用 ASCII 编码</td>
+</tr>
+<tr>
+<td><code>\num</code></td>
+<td>匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，<code>(.)\1</code> 匹配两个连续的相同字符</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值</td>
+</tr>
+<tr>
+<td><code>\nm</code></td>
+<td>标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm</td>
+</tr>
+<tr>
+<td><code>\nml</code></td>
+<td>如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml</td>
+</tr>
+<tr>
+<td><code>\un</code></td>
+<td>匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>正则表达式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis基础知识(4)：发布订阅</title>
+    <url>/2020/04/06/24826/</url>
+    <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Redis消息订阅发布是进程间的一种消息通信模式，发送者pub发送消息，订阅者sub接收消息</p>
+<p>需要先订阅后发布，才能接收到消息。在订阅时，相当于创建了可供发布的频道</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SUBSCRIBE</strong> channel [channel …]</td>
+<td>订阅一个或多个频道</td>
+</tr>
+<tr>
+<td><strong>UNSUBSCRIBE</strong> channel [channel …]</td>
+<td>退阅一个或多个频道</td>
+</tr>
+<tr>
+<td><strong>PUBLISH</strong> channel message</td>
+<td>发布一条消息到频道</td>
+</tr>
+<tr>
+<td><strong>PSUBSCRIBE</strong> channel [channel …]</td>
+<td>订阅一个或多个给定模式的频道</td>
+</tr>
+<tr>
+<td><strong>PUNSUBSCRIBE</strong> channel [channel …]</td>
+<td>退阅一个或多个给定模式的频道</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>NoSQL</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis基础知识(3)：持久化</title>
+    <url>/2020/04/05/18962/</url>
+    <content><![CDATA[<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><p>Redis 作为内存数据库，为了防止因服务器断电或系统宕机而引起的数据丢失问题，Redis 自带了持久化功能，将内存中的数据同步到磁盘中来保持持久化</p>
+<p>Redis 支持两种持久化方式：<strong>RDB</strong>(Redis DataBase) 和 <strong>AOF</strong>(Append Only File)</p>
+<h3 id="RDB方式"><a href="#RDB方式" class="headerlink" title="RDB方式"></a>RDB方式</h3><p>在指定的时间间隔内将内存的数据集快照写入磁盘，待服务重启时，将快照文件读取到内存中</p>
+<p>Redis 会单独创建 (fork) 一个子线程来进行持久化，主线程是不会进行任何 IO 操作的，确保了 Redis 极高的性能</p>
+<p>在进行持久化的过程中，会先将数据写入一个临时文件中，待持久化过程结束时，才会用这个临时文件替换上次持久化好的文件。正是这种特性，我们可以随时进行备份，因为快照文件总是完整可用的</p>
+<p><strong>触发方式</strong>：可以通过 redis命令 或者配置 redis.conf 文件来指定redis持久化的时机。</p>
+<ol>
+<li><p>使用命令</p>
+<ul>
+<li><strong>save</strong> 立即进行持久化，其它全部阻塞</li>
+<li><strong>bgsave</strong> 后台异步进行快照操作，同时还可以响应客户端的请求</li>
+<li><strong>flushall</strong> 清空命令也会触发持久化操作，但 dump.rdb 文件是空的</li>
+<li><strong>shutdown</strong> 关闭数据库命令也会触发持久化操作</li>
+</ul>
+</li>
+<li><p>使用配置文件</p>
+<p>在 redis.conf 文件中的 SNAPSHOTTING 配置部分 save &lt;seconds&gt; &lt;changes&gt;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 在 seconds 秒内有 changes 次更新操作，就进行一次持久化</span><br><span class="line"># 当配置为 save &quot;&quot; 时，代表禁用RDB持久化</span><br><span class="line">save 900 1</span><br><span class="line">save 300 10</span><br><span class="line">save 60 10000</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>配置好持久化文件名和目录后，当触发持久化时，持久化文件存储到配置好的位置。同时当启动 Redis 时，会检测持久化文件是否存在，如果存在则会将其加载到内存</p>
+<p>当 dump.rdb 存在异常，数据恢复将报错。此时可使用 redis-check-rdb –fix &lt;filename&gt; 对持久化文件进行修复，然后重启 Redis 即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 指定本地数据库文件名</span><br><span class="line">dbfilename dump.rdb</span><br><span class="line"></span><br><span class="line"># 指定本地数据文件存放目录</span><br><span class="line">dir .&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h4 id="RDB优缺点"><a href="#RDB优缺点" class="headerlink" title="RDB优缺点"></a>RDB优缺点</h4><ul>
+<li>持久化过程中，主进程不进行任何 IO 操作，对于大规模的数据恢复，具有极高的性能</li>
+<li>最后一次持久化的数据可能因 Redis 意外宕机而丢失最后一次快照后的所有修改数据</li>
+<li>Fork 时，内存数据被克隆，大致2倍的膨胀性，会对服务器造成一丁点压力，影响性能</li>
+<li>总之，RDB 适用于大规模数据恢复，且对数据的完整性、一致性要求不是很严格</li>
+</ul>
+<h3 id="AOF方式"><a href="#AOF方式" class="headerlink" title="AOF方式"></a>AOF方式</h3><p> 将执行过的写指令记录下来，在数据恢复时按照从前到后的顺序再将指令都执行一遍</p>
+<p>默认的AOF持久化策略是每秒钟 fsync 一次（fsync 是指把缓存中的写指令记录到磁盘中），因为在这种情况下，Redis 仍然可以保持很好的处理性能，即使 Redis 故障，也只会丢失最近1秒钟的数据</p>
+<p><strong>触发方式</strong>：可以通过配置 redis.conf 文件来指定 Redis 持久化的时机</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 默认 AOF 持久化方式是关闭的，将参数设置为 yes 即可开启</span><br><span class="line">appendonly no</span><br><span class="line"></span><br><span class="line">## 指定更新条件</span><br><span class="line"># appendfsync always # 每次数据更改都会立刻调用 fsync() 方法写入磁盘</span><br><span class="line">appendfsync everysec # 每秒同步一次</span><br><span class="line"># appendfsync no     # 永不</span><br></pre></td></tr></table></figure>
+
+<p>配置好持久化文件名和目录后，当触发持久化时，持久化文件存储到配置好的位置。同时当启动 Redis 时，会检测持久化文件是否存在，如果存在则会将其加载到内存</p>
+<p>当同时开启 RDB 和 AOF 两种持久化时，会优先加载 AOD 持久化文件进行数据恢复</p>
+<p>当 appendonly.aof 存在异常，数据恢复将报错。此时可使用 redis-check-aof –fix &lt;filename&gt; 对持久化文件进行修复，然后重启 Redis 即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 指定更新文件名</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Rewrite机制"><a href="#Rewrite机制" class="headerlink" title="Rewrite机制"></a>Rewrite机制</h4><p>AOF 采用文件追加的方式，将导致文件越来越大，故新增重写机制。当 AOF 文件大小超过所设置的阈值时，Redis 将启动 AOF 内容压缩，只保留可以恢复数据的最小指令集</p>
+<p>在进行 AOF 重写时，Redis 将 fork 出一条新进程来将文件重写，整个重写操作是绝对安全的，因为 Redis 在创建新 AOF 文件的过程中，会继续将命令追加到现有的 AOF 文件里面，即使重写过程中发生停机，现有的 AOF 文件也不会丢失。 而一旦新 AOF 文件创建完毕，Redis 就会从旧 AOF 文件切换到新 AOF 文件，并开始对新 AOF 文件进行追加操作</p>
+<h4 id="AOF优缺点"><a href="#AOF优缺点" class="headerlink" title="AOF优缺点"></a>AOF优缺点</h4><ul>
+<li><p>使用 AOF 会让 Redis 更加耐久，一旦出现故障，最多丢失1秒的数据</p>
+</li>
+<li><p>AOF 文件有序地保存了对数据库执行的所有写入操作， 这些写入操作以 Redis 协议的格式保存， 因此 AOF 文件的内容非常容易被人读懂， 对文件进行分析（parse）也很轻松</p>
+</li>
+<li><p>相同数据集的数据，AOF文件远大于RBD文件，且恢复速度慢于RBD</p>
+</li>
+<li><p>AOF运行效率慢于RBD，每秒同步策略效率较好，不同步效率和RDB相同</p>
+</li>
+<li><p>AOF在rewrite过程中将新数据写到新文件中造成的阻塞是不可避免的</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>NoSQL</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis基础知识(2)：事务</title>
     <url>/2020/04/04/9773/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>事务可以一次执行多个命令，且有以下两个保证：</p>
@@ -1120,7 +1622,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ConcurrentHashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">float</span> loadFactor, <span class="keyword">int</span> concurrencyLevel)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!(loadFactor &gt; <span class="number">0.0f</span>) || initialCapacity &lt; <span class="number">0</span> || concurrencyLevel &lt;= <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &lt; concurrencyLevel)   <span class="comment">// Use at least as many bins</span></span><br><span class="line">        initialCapacity = concurrencyLevel;   <span class="comment">// as estimated threads</span></span><br><span class="line">    <span class="keyword">long</span> size = (<span class="keyword">long</span>)(<span class="number">1.0</span> + (<span class="keyword">long</span>)initialCapacity / loadFactor);</span><br><span class="line">    <span class="keyword">int</span> cap = (size &gt;= (<span class="keyword">long</span>)MAXIMUM_CAPACITY) ?</span><br><span class="line">        MAXIMUM_CAPACITY : tableSizeFor((<span class="keyword">int</span>)size);</span><br><span class="line">    <span class="keyword">this</span>.sizeCtl = cap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><strong>put(K key, V value)</strong> 添加元素</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(key, value, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(K key, V value, <span class="keyword">boolean</span> onlyIfAbsent)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// key和value都不能为空</span></span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span> || value == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="comment">// 两次计算hash，减少hash冲突</span></span><br><span class="line">    <span class="keyword">int</span> hash = spread(key.hashCode());</span><br><span class="line">    <span class="comment">// 要插入的元素所在桶的元素个数</span></span><br><span class="line">    <span class="keyword">int</span> binCount = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 死循环，配合CAS使用。如果CAS失败则会重新取整个桶进行下面的流程</span></span><br><span class="line">    <span class="keyword">for</span> (Node&lt;K,V&gt;[] tab = table;;) &#123;</span><br><span class="line">        Node&lt;K,V&gt; f; <span class="keyword">int</span> n, i, fh; K fk; V fv;</span><br><span class="line">        <span class="keyword">if</span> (tab == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">            <span class="comment">// 如果桶未初始化或个数为0，则初始化桶</span></span><br><span class="line">            tab = initTable();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果要插入的元素所在的桶还没有元素</span></span><br><span class="line">            <span class="keyword">if</span> (casTabAt(tab, i, <span class="keyword">null</span>, <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key, value)))</span><br><span class="line">                <span class="comment">// 如果使用CAS插入元素时，发现已经有元素了，则进入下一次循环，重新操作</span></span><br><span class="line">                <span class="comment">// 如果使用CAS插入元素成功，则break跳出循环，流程结束</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((fh = f.hash) == MOVED)</span><br><span class="line">            <span class="comment">// 如果要插入的元素所在的桶的第一个元素的hash是MOVED</span></span><br><span class="line">            <span class="comment">// 说明当前f是ForwardingNode节点，意味有其它线程正在扩容，则一起进行扩容操作</span></span><br><span class="line">            tab = helpTransfer(tab, f);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (onlyIfAbsent <span class="comment">// check first node without acquiring lock</span></span><br><span class="line">                 &amp;&amp; fh == hash</span><br><span class="line">                 &amp;&amp; ((fk = f.key) == key || (fk != <span class="keyword">null</span> &amp;&amp; key.equals(fk)))</span><br><span class="line">                 &amp;&amp; (fv = f.val) != <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> fv;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果这个桶不为空且不在迁移元素，则锁住这个桶（分段锁）</span></span><br><span class="line">            <span class="comment">// 并查找要插入的元素是否在这个桶中</span></span><br><span class="line">            <span class="comment">// 存在，则替换值（onlyIfAbsent=false）</span></span><br><span class="line">            <span class="comment">// 不存在，则插入到链表结尾或插入树中</span></span><br><span class="line">            V oldVal = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">synchronized</span> (f) &#123;</span><br><span class="line">                <span class="comment">// 再次检测第一个元素是否有变化，如果有变化则进入下一次循环，从头来过</span></span><br><span class="line">                <span class="keyword">if</span> (tabAt(tab, i) == f) &#123;</span><br><span class="line">                    <span class="comment">// 如果第一个元素的hash值大于等于0（说明不是在迁移，也不是树）</span></span><br><span class="line">                    <span class="comment">// 那就是桶中的元素使用的是链表方式存储</span></span><br><span class="line">                    <span class="keyword">if</span> (fh &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// 桶中元素个数赋值为1</span></span><br><span class="line">                        binCount = <span class="number">1</span>;</span><br><span class="line">                        <span class="comment">// 遍历整个桶，每次结束binCount加1</span></span><br><span class="line">                        <span class="keyword">for</span> (Node&lt;K,V&gt; e = f;; ++binCount) &#123;</span><br><span class="line">                            K ek;</span><br><span class="line">                            <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                                ((ek = e.key) == key ||</span><br><span class="line">                                 (ek != <span class="keyword">null</span> &amp;&amp; key.equals(ek)))) &#123;</span><br><span class="line">                                <span class="comment">// 如果找到了这个元素，则赋值了新值（onlyIfAbsent=false）</span></span><br><span class="line">                                <span class="comment">// 并退出循环</span></span><br><span class="line">                                oldVal = e.val;</span><br><span class="line">                                <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                    e.val = value;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            Node&lt;K,V&gt; pred = e;</span><br><span class="line">                            <span class="keyword">if</span> ((e = e.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                                <span class="comment">// 如果到链表尾部还没有找到元素</span></span><br><span class="line">                                <span class="comment">// 就把它插入到链表结尾并退出循环</span></span><br><span class="line">                                pred.next = <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key, value);</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> TreeBin) &#123;</span><br><span class="line">                        <span class="comment">// 如果第一个元素是树节点</span></span><br><span class="line">                        Node&lt;K,V&gt; p;</span><br><span class="line">                        <span class="comment">// 桶中元素个数赋值为2</span></span><br><span class="line">                        binCount = <span class="number">2</span>;</span><br><span class="line">                        <span class="comment">// 调用红黑树的插入方法插入元素</span></span><br><span class="line">                        <span class="comment">// 如果成功插入则返回null</span></span><br><span class="line">                        <span class="comment">// 否则返回寻找到的节点</span></span><br><span class="line">                        <span class="keyword">if</span> ((p = ((TreeBin&lt;K,V&gt;)f).putTreeVal(hash, key,</span><br><span class="line">                                                       value)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            <span class="comment">// 如果找到了这个元素，则赋值了新值（onlyIfAbsent=false）</span></span><br><span class="line">                            <span class="comment">// 并退出循环</span></span><br><span class="line">                            oldVal = p.val;</span><br><span class="line">                            <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                p.val = value;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> ReservationNode)</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Recursive update"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果binCount不为0，说明成功插入了元素或者寻找到了元素</span></span><br><span class="line">            <span class="keyword">if</span> (binCount != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 如果链表元素个数达到了8，则尝试树化</span></span><br><span class="line">                <span class="comment">// 因为上面把元素插入到树中时，binCount只赋值了2，并没有计算整个树中元素的个数</span></span><br><span class="line">                <span class="comment">// 所以不会重复树化</span></span><br><span class="line">                <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD)</span><br><span class="line">                    treeifyBin(tab, i);</span><br><span class="line"><span class="keyword">if</span> (oldVal != <span class="keyword">null</span>)</span><br><span class="line">                    <span class="comment">// 如果要插入的元素已经存在，则返回旧值</span></span><br><span class="line">                    <span class="keyword">return</span> oldVal;</span><br><span class="line">                <span class="comment">// 退出外层大循环，流程结束</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 成功插入元素，元素个数加1（是否要扩容在这个里面）</span></span><br><span class="line">    addCount(<span class="number">1L</span>, binCount);</span><br><span class="line">    <span class="comment">// 成功插入元素返回null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(key, value, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(K key, V value, <span class="keyword">boolean</span> onlyIfAbsent)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// key和value都不能为空</span></span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span> || value == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="comment">// 两次计算hash，减少hash冲突</span></span><br><span class="line">    <span class="keyword">int</span> hash = spread(key.hashCode());</span><br><span class="line">    <span class="comment">// 要插入的元素所在桶的元素个数</span></span><br><span class="line">    <span class="keyword">int</span> binCount = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 死循环，配合CAS使用。如果CAS失败则会重新取整个桶进行下面的流程</span></span><br><span class="line">    <span class="keyword">for</span> (Node&lt;K,V&gt;[] tab = table;;) &#123;</span><br><span class="line">        Node&lt;K,V&gt; f; <span class="keyword">int</span> n, i, fh; K fk; V fv;</span><br><span class="line">        <span class="keyword">if</span> (tab == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">            <span class="comment">// 如果桶未初始化或个数为0，则初始化桶</span></span><br><span class="line">            tab = initTable();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果要插入的元素所在的桶还没有元素</span></span><br><span class="line">            <span class="keyword">if</span> (casTabAt(tab, i, <span class="keyword">null</span>, <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key, value)))</span><br><span class="line">                <span class="comment">// 如果使用CAS插入元素时，发现已经有元素了，则进入下一次循环，重新操作</span></span><br><span class="line">                <span class="comment">// 如果使用CAS插入元素成功，则break跳出循环，流程结束</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((fh = f.hash) == MOVED)</span><br><span class="line">            <span class="comment">// 如果要插入的元素所在的桶的第一个元素的hash是MOVED</span></span><br><span class="line">            <span class="comment">// 说明当前f是ForwardingNode节点，意味有其它线程正在扩容，则一起进行扩容操作</span></span><br><span class="line">            tab = helpTransfer(tab, f);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (onlyIfAbsent <span class="comment">// check first node without acquiring lock</span></span><br><span class="line">                 &amp;&amp; fh == hash</span><br><span class="line">                 &amp;&amp; ((fk = f.key) == key || (fk != <span class="keyword">null</span> &amp;&amp; key.equals(fk)))</span><br><span class="line">                 &amp;&amp; (fv = f.val) != <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> fv;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果这个桶不为空且不在迁移元素，则锁住这个桶（分段锁）</span></span><br><span class="line">            <span class="comment">// 并查找要插入的元素是否在这个桶中</span></span><br><span class="line">            <span class="comment">// 存在，则替换值（onlyIfAbsent=false）</span></span><br><span class="line">            <span class="comment">// 不存在，则插入到链表结尾或插入树中</span></span><br><span class="line">            V oldVal = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">synchronized</span> (f) &#123;</span><br><span class="line">                <span class="comment">// 再次检测第一个元素是否有变化，如果有变化则进入下一次循环，从头来过</span></span><br><span class="line">                <span class="keyword">if</span> (tabAt(tab, i) == f) &#123;</span><br><span class="line">                    <span class="comment">// 如果第一个元素的hash值大于等于0（说明不是在迁移，也不是树）</span></span><br><span class="line">                    <span class="comment">// 那就是桶中的元素使用的是链表方式存储</span></span><br><span class="line">                    <span class="keyword">if</span> (fh &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">// 桶中元素个数赋值为1</span></span><br><span class="line">                        binCount = <span class="number">1</span>;</span><br><span class="line">                        <span class="comment">// 遍历整个桶，每次结束binCount加1</span></span><br><span class="line">                        <span class="keyword">for</span> (Node&lt;K,V&gt; e = f;; ++binCount) &#123;</span><br><span class="line">                            K ek;</span><br><span class="line">                            <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                                ((ek = e.key) == key ||</span><br><span class="line">                                 (ek != <span class="keyword">null</span> &amp;&amp; key.equals(ek)))) &#123;</span><br><span class="line">                                <span class="comment">// 如果找到了这个元素，则赋值了新值（onlyIfAbsent=false）</span></span><br><span class="line">                                <span class="comment">// 并退出循环</span></span><br><span class="line">                                oldVal = e.val;</span><br><span class="line">                                <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                    e.val = value;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            Node&lt;K,V&gt; pred = e;</span><br><span class="line">                            <span class="keyword">if</span> ((e = e.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                                <span class="comment">// 如果到链表尾部还没有找到元素</span></span><br><span class="line">                                <span class="comment">// 就把它插入到链表结尾并退出循环</span></span><br><span class="line">                                pred.next = <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key, value);</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> TreeBin) &#123;</span><br><span class="line">                        <span class="comment">// 如果第一个元素是树节点</span></span><br><span class="line">                        Node&lt;K,V&gt; p;</span><br><span class="line">                        <span class="comment">// 桶中元素个数赋值为2</span></span><br><span class="line">                        binCount = <span class="number">2</span>;</span><br><span class="line">                        <span class="comment">// 调用红黑树的插入方法插入元素</span></span><br><span class="line">                        <span class="comment">// 如果成功插入则返回null</span></span><br><span class="line">                        <span class="comment">// 否则返回寻找到的节点</span></span><br><span class="line">                        <span class="keyword">if</span> ((p = ((TreeBin&lt;K,V&gt;)f).putTreeVal(hash, key,</span><br><span class="line">                                                       value)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            <span class="comment">// 如果找到了这个元素，则赋值了新值（onlyIfAbsent=false）</span></span><br><span class="line">                            <span class="comment">// 并退出循环</span></span><br><span class="line">                            oldVal = p.val;</span><br><span class="line">                            <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                p.val = value;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> ReservationNode)</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Recursive update"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 如果binCount不为0，说明成功插入了元素或者寻找到了元素</span></span><br><span class="line">            <span class="keyword">if</span> (binCount != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 如果链表元素个数达到了8，则尝试树化</span></span><br><span class="line">                <span class="comment">// 因为上面把元素插入到树中时，binCount只赋值了2，并没有计算整个树中元素的个数</span></span><br><span class="line">                <span class="comment">// 所以不会重复树化</span></span><br><span class="line">                <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD)</span><br><span class="line">                    treeifyBin(tab, i);</span><br><span class="line">                <span class="keyword">if</span> (oldVal != <span class="keyword">null</span>)</span><br><span class="line">                    <span class="comment">// 如果要插入的元素已经存在，则返回旧值</span></span><br><span class="line">                    <span class="keyword">return</span> oldVal;</span><br><span class="line">                <span class="comment">// 退出外层大循环，流程结束</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 成功插入元素，元素个数加1（是否要扩容在这个里面）</span></span><br><span class="line">    addCount(<span class="number">1L</span>, binCount);</span><br><span class="line">    <span class="comment">// 成功插入元素返回null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>initTable()</strong> 初始化哈希表</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Node&lt;K,V&gt;[] initTable() &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; <span class="keyword">int</span> sc;</span><br><span class="line">    <span class="comment">// table为空时才能进入初始化操作</span></span><br><span class="line">    <span class="keyword">while</span> ((tab = table) == <span class="keyword">null</span> || tab.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((sc = sizeCtl) &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="comment">// sizeCtl小于0表示其他线程已经在初始化或扩容，挂起当前线程</span></span><br><span class="line">            Thread.yield(); <span class="comment">// lost initialization race; just spin</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (U.compareAndSetInt(<span class="keyword">this</span>, SIZECTL, sc, -<span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="comment">// 如果把sizeCtl原子更新为-1成功，则当前线程进入初始化</span></span><br><span class="line">            <span class="comment">// 如果原子更新失败则说明有其它线程先一步进入初始化了，则进入下一次循环</span></span><br><span class="line">            <span class="comment">// 如果下一次循环时还没初始化完毕，则sizeCtl&lt;0进入上面if的逻辑让出CPU</span></span><br><span class="line">            <span class="comment">// 如果下一次循环更新完毕了，则table.length!=0，退出循环</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 再次检查table是否为空，防止ABA问题</span></span><br><span class="line">                <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || tab.length == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">// 如果sc为0则使用默认值16</span></span><br><span class="line">                    <span class="keyword">int</span> n = (sc &gt; <span class="number">0</span>) ? sc : DEFAULT_CAPACITY;</span><br><span class="line">                    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">                    <span class="comment">// 新建数组</span></span><br><span class="line">                    Node&lt;K,V&gt;[] nt = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node&lt;?,?&gt;[n];</span><br><span class="line">                    <span class="comment">// 赋值给table桶数组</span></span><br><span class="line">                    table = tab = nt;</span><br><span class="line">                    <span class="comment">// 设置sc为数组长度的0.75倍</span></span><br><span class="line">                    <span class="comment">// n - (n &gt;&gt;&gt; 2) = n - n/4 = 0.75n</span></span><br><span class="line">                    <span class="comment">// 可见这里装载因子和扩容门槛都是写死了的</span></span><br><span class="line">                    <span class="comment">// 这也正是没有threshold和loadFactor属性的原因</span></span><br><span class="line">                    sc = n - (n &gt;&gt;&gt; <span class="number">2</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="comment">// 把sc赋值给sizeCtl，这时存储的是扩容门槛</span></span><br><span class="line">                sizeCtl = sc;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
