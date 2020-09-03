@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kaguya.top/"/>
-  <updated>2020-05-10T00:30:30.364Z</updated>
+  <updated>2020-08-24T16:01:27.823Z</updated>
   <id>https://kaguya.top/</id>
   
   <author>
@@ -17,15 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Spring源码分析(7)：ConfigurationClassBeanDefinitionReader 加载 bean 定义</title>
-    <link href="https://kaguya.top/2020/05/09/35542/"/>
-    <id>https://kaguya.top/2020/05/09/35542/</id>
-    <published>2020-05-09T07:05:15.000Z</published>
-    <updated>2020-05-10T00:30:30.364Z</updated>
+    <title>安装ArchLinux教程</title>
+    <link href="https://kaguya.top/2020/08/24/19701/"/>
+    <id>https://kaguya.top/2020/08/24/19701/</id>
+    <published>2020-08-24T14:38:11.000Z</published>
+    <updated>2020-08-24T16:01:27.823Z</updated>
     
     <summary type="html">
     
-      Spring源码分析7
+      本文详细介绍了如何从零开始安装一个Arch Linux系统
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Linux" scheme="https://kaguya.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(23)：责任链模式</title>
+    <link href="https://kaguya.top/2020/07/08/54332/"/>
+    <id>https://kaguya.top/2020/07/08/54332/</id>
+    <published>2020-07-08T00:16:50.000Z</published>
+    <updated>2020-09-03T14:01:50.264Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍了责任链模式
     
     </summary>
     
@@ -35,22 +56,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Spring源码分析(6)：ConfigurationClassPraser 解析验证配置类</title>
-    <link href="https://kaguya.top/2020/05/09/21695/"/>
-    <id>https://kaguya.top/2020/05/09/21695/</id>
-    <published>2020-05-09T04:44:34.000Z</published>
-    <updated>2020-05-09T07:05:34.851Z</updated>
+    <title>设计模式(22)：策略模式</title>
+    <link href="https://kaguya.top/2020/07/08/36459/"/>
+    <id>https://kaguya.top/2020/07/08/36459/</id>
+    <published>2020-07-08T00:16:42.000Z</published>
+    <updated>2020-09-03T14:01:57.080Z</updated>
     
     <summary type="html">
     
-      Spring源码分析6
+      本文介绍了策略模式
     
     </summary>
     
@@ -60,22 +79,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Spring源码分析(5)：ConfigurationClassPostProcessor 处理配置类</title>
-    <link href="https://kaguya.top/2020/05/08/40116/"/>
-    <id>https://kaguya.top/2020/05/08/40116/</id>
-    <published>2020-05-08T13:37:36.000Z</published>
-    <updated>2020-05-09T04:45:09.536Z</updated>
+    <title>设计模式(21)：状态模式</title>
+    <link href="https://kaguya.top/2020/07/08/387/"/>
+    <id>https://kaguya.top/2020/07/08/387/</id>
+    <published>2020-07-08T00:16:35.000Z</published>
+    <updated>2020-09-03T14:02:03.403Z</updated>
     
     <summary type="html">
     
-      Spring源码分析5
+      本文介绍了状态模式
     
     </summary>
     
@@ -85,22 +102,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Spring源码分析(4)：invokeBeanFactoryPostProcessors</title>
-    <link href="https://kaguya.top/2020/05/08/31338/"/>
-    <id>https://kaguya.top/2020/05/08/31338/</id>
-    <published>2020-05-07T19:23:02.000Z</published>
-    <updated>2020-05-09T03:24:51.072Z</updated>
+    <title>设计模式(20)：解释器模式</title>
+    <link href="https://kaguya.top/2020/07/08/13236/"/>
+    <id>https://kaguya.top/2020/07/08/13236/</id>
+    <published>2020-07-08T00:16:26.000Z</published>
+    <updated>2020-09-03T14:02:10.829Z</updated>
     
     <summary type="html">
     
-      Spring源码分析4
+      本文介绍了解释器模式
     
     </summary>
     
@@ -110,22 +125,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Spring源码分析(3)：AnnotationConfigApplicationContext 注册配置类与刷新</title>
-    <link href="https://kaguya.top/2020/05/07/46014/"/>
-    <id>https://kaguya.top/2020/05/07/46014/</id>
-    <published>2020-05-07T05:28:49.000Z</published>
-    <updated>2020-05-09T03:24:33.523Z</updated>
+    <title>设计模式(19)：备忘录模式</title>
+    <link href="https://kaguya.top/2020/07/08/32110/"/>
+    <id>https://kaguya.top/2020/07/08/32110/</id>
+    <published>2020-07-08T00:16:17.000Z</published>
+    <updated>2020-09-03T14:02:20.671Z</updated>
     
     <summary type="html">
     
-      Spring源码分析3
+      本文介绍了备忘录模式
     
     </summary>
     
@@ -135,22 +148,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Spring源码分析(2)：BeanDefinition</title>
-    <link href="https://kaguya.top/2020/05/07/4689/"/>
-    <id>https://kaguya.top/2020/05/07/4689/</id>
-    <published>2020-05-07T03:39:41.000Z</published>
-    <updated>2020-05-08T17:39:04.927Z</updated>
+    <title>设计模式(18)：中介者模式</title>
+    <link href="https://kaguya.top/2020/07/08/44922/"/>
+    <id>https://kaguya.top/2020/07/08/44922/</id>
+    <published>2020-07-08T00:16:07.000Z</published>
+    <updated>2020-09-03T14:02:27.707Z</updated>
     
     <summary type="html">
     
-      Spring源码分析2
+      本文介绍了中介者模式
     
     </summary>
     
@@ -160,22 +171,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Spring源码分析(1)：AnnotationConfigApplicationContext</title>
-    <link href="https://kaguya.top/2020/05/07/12312/"/>
-    <id>https://kaguya.top/2020/05/07/12312/</id>
-    <published>2020-05-06T18:50:39.000Z</published>
-    <updated>2020-05-09T03:24:33.523Z</updated>
+    <title>设计模式(17)：观察者模式</title>
+    <link href="https://kaguya.top/2020/07/08/38827/"/>
+    <id>https://kaguya.top/2020/07/08/38827/</id>
+    <published>2020-07-08T00:15:48.000Z</published>
+    <updated>2020-09-03T13:56:36.938Z</updated>
     
     <summary type="html">
     
-      Spring源码分析1
+      本文介绍了观察者模式
     
     </summary>
     
@@ -185,156 +194,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="Spring" scheme="https://kaguya.top/tags/Spring/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>常用的正则表达式</title>
-    <link href="https://kaguya.top/2020/05/02/44074/"/>
-    <id>https://kaguya.top/2020/05/02/44074/</id>
-    <published>2020-05-01T19:14:18.000Z</published>
-    <updated>2020-05-01T19:37:04.967Z</updated>
+    <title>设计模式(16)：迭代器模式</title>
+    <link href="https://kaguya.top/2020/07/08/14077/"/>
+    <id>https://kaguya.top/2020/07/08/14077/</id>
+    <published>2020-07-08T00:15:39.000Z</published>
+    <updated>2020-09-03T14:02:36.216Z</updated>
     
     <summary type="html">
     
-      本文列举了一些常用的正则表达式
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="正则表达式" scheme="https://kaguya.top/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>正则表达式详解</title>
-    <link href="https://kaguya.top/2020/05/01/19648/"/>
-    <id>https://kaguya.top/2020/05/01/19648/</id>
-    <published>2020-05-01T03:33:33.000Z</published>
-    <updated>2020-05-01T19:10:56.692Z</updated>
-    
-    <summary type="html">
-    
-      本文详细介绍了正则表达式
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="正则表达式" scheme="https://kaguya.top/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis基础知识(4)：发布订阅</title>
-    <link href="https://kaguya.top/2020/04/06/24826/"/>
-    <id>https://kaguya.top/2020/04/06/24826/</id>
-    <published>2020-04-05T16:57:27.000Z</published>
-    <updated>2020-04-05T18:10:14.493Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍了Redis中发布与订阅
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="NoSQL" scheme="https://kaguya.top/tags/NoSQL/"/>
-    
-      <category term="Redis" scheme="https://kaguya.top/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis基础知识(3)：持久化</title>
-    <link href="https://kaguya.top/2020/04/05/18962/"/>
-    <id>https://kaguya.top/2020/04/05/18962/</id>
-    <published>2020-04-05T07:31:14.000Z</published>
-    <updated>2020-04-05T17:09:43.788Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍了Redis中的持久化技术
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="NoSQL" scheme="https://kaguya.top/tags/NoSQL/"/>
-    
-      <category term="Redis" scheme="https://kaguya.top/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis基础知识(2)：事务</title>
-    <link href="https://kaguya.top/2020/04/04/9773/"/>
-    <id>https://kaguya.top/2020/04/04/9773/</id>
-    <published>2020-04-04T12:40:33.000Z</published>
-    <updated>2020-04-04T15:10:43.320Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍了Redis中事务
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="NoSQL" scheme="https://kaguya.top/tags/NoSQL/"/>
-    
-      <category term="Redis" scheme="https://kaguya.top/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis基础知识(1)：数据类型</title>
-    <link href="https://kaguya.top/2020/04/03/47456/"/>
-    <id>https://kaguya.top/2020/04/03/47456/</id>
-    <published>2020-04-03T15:43:48.000Z</published>
-    <updated>2020-04-04T13:53:08.719Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍了Redis中几种数据类型及其相关操作命令
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="NoSQL" scheme="https://kaguya.top/tags/NoSQL/"/>
-    
-      <category term="Redis" scheme="https://kaguya.top/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java多线程(4)：线程常用方法</title>
-    <link href="https://kaguya.top/2020/03/28/4101/"/>
-    <id>https://kaguya.top/2020/03/28/4101/</id>
-    <published>2020-03-28T01:29:25.000Z</published>
-    <updated>2020-03-28T07:21:03.108Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍了线程的一些常用方法
+      本文介绍了迭代器模式
     
     </summary>
     
@@ -344,20 +217,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="多线程" scheme="https://kaguya.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Java多线程(3)：线程的同步与锁</title>
-    <link href="https://kaguya.top/2020/03/27/43302/"/>
-    <id>https://kaguya.top/2020/03/27/43302/</id>
-    <published>2020-03-27T13:04:33.000Z</published>
-    <updated>2020-03-28T01:28:37.732Z</updated>
+    <title>设计模式(15)：访问者模式</title>
+    <link href="https://kaguya.top/2020/07/08/35613/"/>
+    <id>https://kaguya.top/2020/07/08/35613/</id>
+    <published>2020-07-08T00:15:32.000Z</published>
+    <updated>2020-09-03T14:03:08.603Z</updated>
     
     <summary type="html">
     
-      本文介绍了线程的同步和锁
+      本文介绍了访问者模式
     
     </summary>
     
@@ -367,20 +240,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="多线程" scheme="https://kaguya.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Java多线程(2)：线程的状态</title>
-    <link href="https://kaguya.top/2020/03/27/17671/"/>
-    <id>https://kaguya.top/2020/03/27/17671/</id>
-    <published>2020-03-27T03:24:59.000Z</published>
-    <updated>2020-03-27T13:05:56.954Z</updated>
+    <title>设计模式(14)：命令模式</title>
+    <link href="https://kaguya.top/2020/07/08/55222/"/>
+    <id>https://kaguya.top/2020/07/08/55222/</id>
+    <published>2020-07-08T00:15:17.000Z</published>
+    <updated>2020-09-03T13:53:30.618Z</updated>
     
     <summary type="html">
     
-      本文介绍了Java中线程的六种状态
+      本文介绍了命令模式
     
     </summary>
     
@@ -390,20 +263,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="多线程" scheme="https://kaguya.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Java多线程(1)：概念</title>
-    <link href="https://kaguya.top/2020/03/27/46089/"/>
-    <id>https://kaguya.top/2020/03/27/46089/</id>
-    <published>2020-03-27T00:28:31.000Z</published>
-    <updated>2020-03-27T13:05:40.752Z</updated>
+    <title>设计模式(13)：模板方法模式</title>
+    <link href="https://kaguya.top/2020/07/08/10595/"/>
+    <id>https://kaguya.top/2020/07/08/10595/</id>
+    <published>2020-07-08T00:15:09.000Z</published>
+    <updated>2020-09-03T13:53:36.590Z</updated>
     
     <summary type="html">
     
-      本文介绍了线程和进程的概念，以及Java中的线程的创建方式
+      本文介绍了模板方法模式
     
     </summary>
     
@@ -413,20 +286,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="多线程" scheme="https://kaguya.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Java容器源码分析：LinkedList</title>
-    <link href="https://kaguya.top/2020/03/23/50293/"/>
-    <id>https://kaguya.top/2020/03/23/50293/</id>
-    <published>2020-03-23T02:35:48.000Z</published>
-    <updated>2020-05-09T03:24:34.305Z</updated>
+    <title>设计模式(12)：代理模式</title>
+    <link href="https://kaguya.top/2020/07/08/37911/"/>
+    <id>https://kaguya.top/2020/07/08/37911/</id>
+    <published>2020-07-08T00:14:42.000Z</published>
+    <updated>2020-09-03T13:53:46.200Z</updated>
     
     <summary type="html">
     
-      本文从源码角度分析LinkedList
+      本文介绍了代理模式
     
     </summary>
     
@@ -436,20 +309,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Java容器源码分析：PriorityQueue</title>
-    <link href="https://kaguya.top/2020/03/22/26333/"/>
-    <id>https://kaguya.top/2020/03/22/26333/</id>
-    <published>2020-03-22T10:54:55.000Z</published>
-    <updated>2020-03-23T02:46:07.909Z</updated>
+    <title>设计模式(11)：享元模式</title>
+    <link href="https://kaguya.top/2020/07/08/8687/"/>
+    <id>https://kaguya.top/2020/07/08/8687/</id>
+    <published>2020-07-08T00:14:12.000Z</published>
+    <updated>2020-09-03T13:53:55.808Z</updated>
     
     <summary type="html">
     
-      本文从源码角度分析PriorityQueue
+      本文介绍了享元模式
     
     </summary>
     
@@ -459,20 +332,20 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
-    <title>Java容器源码分析：CopyOnWriteArraySet</title>
-    <link href="https://kaguya.top/2020/03/22/36265/"/>
-    <id>https://kaguya.top/2020/03/22/36265/</id>
-    <published>2020-03-22T09:06:52.000Z</published>
-    <updated>2020-03-23T02:45:39.977Z</updated>
+    <title>设计模式(10)：外观模式</title>
+    <link href="https://kaguya.top/2020/07/08/52857/"/>
+    <id>https://kaguya.top/2020/07/08/52857/</id>
+    <published>2020-07-08T00:14:02.000Z</published>
+    <updated>2020-09-03T13:54:01.459Z</updated>
     
     <summary type="html">
     
-      本文从源码角度分析CopyOnWriteArraySet
+      本文介绍了外观模式
     
     </summary>
     
@@ -482,7 +355,122 @@
     
       <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
     
-      <category term="源码分析" scheme="https://kaguya.top/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(9)：组合模式</title>
+    <link href="https://kaguya.top/2020/07/08/48350/"/>
+    <id>https://kaguya.top/2020/07/08/48350/</id>
+    <published>2020-07-08T00:13:49.000Z</published>
+    <updated>2020-09-03T13:44:14.590Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍了组合模式
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(8)：装饰模式</title>
+    <link href="https://kaguya.top/2020/07/08/46491/"/>
+    <id>https://kaguya.top/2020/07/08/46491/</id>
+    <published>2020-07-08T00:13:04.000Z</published>
+    <updated>2020-09-03T13:11:49.728Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍了装饰模式
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(7)：桥接模式</title>
+    <link href="https://kaguya.top/2020/07/08/55563/"/>
+    <id>https://kaguya.top/2020/07/08/55563/</id>
+    <published>2020-07-08T00:12:48.000Z</published>
+    <updated>2020-09-03T13:41:59.698Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍了桥接模式
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(6)：适配器模式</title>
+    <link href="https://kaguya.top/2020/07/08/37610/"/>
+    <id>https://kaguya.top/2020/07/08/37610/</id>
+    <published>2020-07-08T00:12:38.000Z</published>
+    <updated>2020-08-31T13:47:33.889Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍了适配器模式
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式(5)：建造者模式</title>
+    <link href="https://kaguya.top/2020/07/08/20259/"/>
+    <id>https://kaguya.top/2020/07/08/20259/</id>
+    <published>2020-07-08T00:12:22.000Z</published>
+    <updated>2020-08-31T13:03:38.737Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍了建造者模式
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://kaguya.top/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Java" scheme="https://kaguya.top/tags/Java/"/>
+    
+      <category term="设计模式" scheme="https://kaguya.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
